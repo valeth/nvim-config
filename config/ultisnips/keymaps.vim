@@ -1,0 +1,1 @@
+inoremap <C-@> <C-Space>
