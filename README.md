@@ -1,2 +1,0 @@
-# vimfiles
-ViM configuration files
