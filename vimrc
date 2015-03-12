@@ -5,8 +5,10 @@
 "                                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-runtime! config/*.vim
-runtime bundle/unbundle/unbundle.vim
-runtime! config/**/*.vim
+"runtime bundle/unbundle/unbundle.vim
+runtime bundle/pathogen/autoload/pathogen.vim
 
-colorscheme molokai
+execute pathogen#infect()
+
+runtime! config/core/**/*.vim
+runtime! config/bundle/**/*.vim
