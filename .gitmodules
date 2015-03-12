@@ -43,12 +43,15 @@
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
-[submodule "bundle/unbundle"]
-	path = bundle/unbundle
-	url = https://github.com/sunaku/vim-unbundle
 [submodule "bundle/colorscheme-kalisi"]
 	path = bundle/colorscheme-kalisi
 	url = https://github.com/freeo/vim-kalisi
 [submodule "bundle/youcompleteme"]
 	path = bundle/youcompleteme
 	url = gh:Valloric/YouCompleteMe
+[submodule "bundle/auto-pairs"]
+	path = bundle/auto-pairs
+	url = gh:jiangmiao/auto-pairs
+[submodule "bundle/pathogen"]
+	path = bundle/pathogen
+	url = gh:tpope/vim-pathogen
