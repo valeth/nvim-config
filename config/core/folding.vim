@@ -1,5 +1,5 @@
 if has("folding")
-    set foldcolumn=0
+    set foldcolumn=1
     set foldlevel=1
     set foldmethod=syntax
     set foldtext=MyFoldText()
