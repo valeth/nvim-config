@@ -1,7 +1,6 @@
-call plug#begin($vim_datadir . '/plugins')
+call plug#begin(g:vim_data_home . '/plugins')
 
 " Always load
-Plug 'tomasr/molokai'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'jiangmiao/auto-pairs'
@@ -10,6 +9,8 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/gnupg'
+"Plug 'tomasr/molokai'
+Plug 'junegunn/seoul256.vim'
 
 " Load on demand
 Plug 'scrooloose/nerdtree',             { 'on': 'NERDTreeToggle' }
