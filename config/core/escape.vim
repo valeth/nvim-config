@@ -1,4 +1,5 @@
 imap jk <ESC>
+vmap jk <ESC>
 
 "aug FastEscape
     "au!
