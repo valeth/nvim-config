@@ -5,5 +5,5 @@
 "                                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-runtime! config/core/**/*.vim
-runtime! config/plugins/**/*.vim
+runtime! core/**/*.vim
+runtime! plugins/**/*.vim
