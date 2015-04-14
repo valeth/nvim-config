@@ -14,13 +14,13 @@ Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree',             { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdtree-git-plugin',  { 'on': 'NERDTreeToggle' }
 
-if version >= 704
+if v:version >= 704
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'Valloric/YouCompleteMe',          { 'do': './install.sh --clang-completer --system-libclang' }
 endif
 
-if version >= 703
+if v:version >= 703
 Plug 'vim-scripts/Gundo',               { 'on': 'GundoToggle' }
 endif
 
