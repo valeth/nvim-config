@@ -13,7 +13,7 @@
 "   seoul256-light  252 - 256   253
 
 let g:seoul256_background       = 237
-let g:seoul256_light_background = 253
+let g:seoul256_light_background = 254
 colorscheme seoul256
 
 function! ToggleColorscheme()
