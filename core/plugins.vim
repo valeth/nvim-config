@@ -8,7 +8,7 @@ Plug 'majutsushi/tagbar'
 
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/gnupg'
-"Plug 'tomasr/molokai'
+Plug 'tomasr/molokai'
 Plug 'junegunn/seoul256.vim'
 
 Plug 'scrooloose/nerdtree',             { 'on': 'NERDTreeToggle' }
