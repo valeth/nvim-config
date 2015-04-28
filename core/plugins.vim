@@ -8,8 +8,10 @@ Plug 'majutsushi/tagbar'
 
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/gnupg'
+
 Plug 'tomasr/molokai'
 Plug 'junegunn/seoul256.vim'
+Plug 'zefei/vim-colortuner',		{ 'on': 'Colortuner' }
 
 Plug 'scrooloose/nerdtree',             { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdtree-git-plugin',  { 'on': 'NERDTreeToggle' }
