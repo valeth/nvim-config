@@ -1,3 +1,6 @@
+set confirm
+set autowrite
+
 command! Wq wq
 command! WQ wq
 command! Q q

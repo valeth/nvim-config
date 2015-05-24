@@ -11,6 +11,7 @@ Plug 'vim-scripts/gnupg'
 
 Plug 'tomasr/molokai'
 Plug 'junegunn/seoul256.vim'
+Plug 'baeuml/summerfruit256.vim'
 Plug 'zefei/vim-colortuner',		{ 'on': 'Colortuner' }
 
 Plug 'scrooloose/nerdtree',             { 'on': 'NERDTreeToggle' }

@@ -1,4 +1,3 @@
-set autowrite
 set shortmess=aoOtTI
 set clipboard=unnamed,unnamedplus,autoselect
 
