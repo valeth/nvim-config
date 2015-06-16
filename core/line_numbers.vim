@@ -1,3 +1,5 @@
+set number
+
 if v:version >= 704
     aug LineNumbers
         au!
