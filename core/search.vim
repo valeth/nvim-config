@@ -9,3 +9,8 @@ if has('extra_search')
 		nnoremap <silent><C-L> :nohlsearch<CR><C-L>
 	endif
 endif
+
+" load the matchit macros
+if !exists('g:loaded_matchit') && findfile('plugins/matchit.vim', &rtp) ==# ''
+	runtime! macros/matchit.vim
+endif
