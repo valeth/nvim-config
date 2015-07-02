@@ -1,3 +1,5 @@
+set formatoptions+=j
+
 set autoindent
 set smarttab
 
@@ -18,8 +20,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " fix indentation of an entire file
-nnoremap <F2> gg=G<CR>``
-inoremap <F2> <ESC>gg=G<CR>``a
+nnoremap <leader>fmt gg=G<CR>``
 
 " local replace
 nnoremap gr gd[{V%::s/<C-R>///g<left><left>

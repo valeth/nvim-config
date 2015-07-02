@@ -8,6 +8,8 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_tex_checkers = ["false"]
 
-nnoremap <F1> :SyntasticToggleMode<CR>
-inoremap <F1> <C-O>:SyntasticToggleMode<CR>
-vnoremap <F1> <ESC>:SyntasticToggleMode<CR>
+let g:syntastic_error_symbol = '!'
+let g:syntastic_warning_symbol = '?'
+
+nnoremap <leader>syn :SyntasticToggleMode<CR>
+vnoremap <leader>syn <ESC>:SyntasticToggleMode<CR>

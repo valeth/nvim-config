@@ -25,7 +25,9 @@ set updatetime=1500
 set switchbuf=useopen,usetab
 
 " more clipboard options
-set clipboard=unnamed,unnamedplus,autoselect
+if has('xterm_clipboard')
+	set clipboard=unnamed,unnamedplus,autoselect
+endif
 
 " allow explicit writing of read-only files with sudo
 cnoremap sudow w !sudo tee % >/dev/null
@@ -35,8 +37,8 @@ aug ReadonlyFiles
 	au BufNewFile,BufRead /var/log/* set nomodifiable
 aug END
 
-if v:version >= 704
-    set cryptmethod=blowfish
+"if v:version >= 704
+	"set cryptmethod=blowfish
 
-    au BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
-endif
+	"au BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
+"endif

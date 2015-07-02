@@ -7,14 +7,20 @@ inoremap JK <ESC>
 inoremap Jk <ESC>
 
 set ttimeout
+
+" lower timeout
+set ttimeoutlen=-1
 set timeoutlen=500
 
+" unset default help shortcut
 nnoremap <F1> <NOP>
 inoremap <F1> <NOP>
 
 let g:mapleader = ","
 
+" unset search highlighting
 noremap <silent> <Leader><CR> :noh<CR>
+
 nnoremap <Leader>vl :setlocal cursorline!<CR>
 nnoremap <Leader>vc :setlocal cursorcolumn!<CR>
 nnoremap <Leader>ve :setlocal colorcolumn=80<CR>

@@ -41,19 +41,12 @@ endif
 " show invisible characters
 set listchars=tab:»\ ,trail:◆,extends:▹,precedes:◃,eol:↲,nbsp:·
 
-"if &listchars ==# 'eol:$'
-"set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-"endif
-
-nnoremap <silent> <F4> :set invlist<CR>
-inoremap <silent> <F4> <C-O>:set invlist<CR>
-vnoremap <silent> <F4> :<C-W>set invlist<CR>
-
-
+nnoremap <silent> <leader>il :set invlist<CR>
+vnoremap <silent> <leader>il :<C-W>set invlist<CR>
 
 if has('wildmenu')
 	set wildmenu
-	set wildmode=longest:full,list
+	set wildmode=list:longest,full
 	set wildignore=.bak,.old,.swp,~
 endif
 
@@ -70,10 +63,11 @@ if has('syntax')
 	syntax enable
 endif
 
-if has('multi_byte')
-	set encoding=utf-8
-	set termencoding=utf-8
-endif
+" set via $LANG
+"if has('multi_byte')
+	"set encoding=utf-8
+	"set termencoding=utf-8
+"endif
 
 " always show a status line
 set laststatus=2

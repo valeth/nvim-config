@@ -45,11 +45,11 @@ if ! exists('g:my_vim')
 	endif
 
 
-	let l:user_rtp = g:vim_config_home
-	let l:runtimepath_old = &runtimepath
-	let &runtimepath .= ',' . expand(l:user_rtp)
-	let &runtimepath .= ',' . expand(l:user_rtp) . '/after'
-	let &runtimepath .= ',' . expand(l:runtimepath_old)
+	let g:user_rtp = g:vim_config_home
+	let g:runtimepath_old = &runtimepath
+	let &runtimepath .= ',' . expand(g:user_rtp)
+	let &runtimepath .= ',' . expand(g:user_rtp) . '/after'
+	let &runtimepath .= ',' . expand(g:runtimepath_old)
 
 
 	if $USER == 'root'
