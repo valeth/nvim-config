@@ -28,8 +28,10 @@ endif
 
 if has('linebreak')
 	let &showbreak = '↳ '
-	set breakindent
-	set breakindentopt=sbr
+	if v:version >=704
+		set breakindent
+		set breakindentopt=sbr
+	endif
 endif
 
 " show a ruler and show the current command in the bottom right
@@ -65,8 +67,8 @@ endif
 
 " set via $LANG
 "if has('multi_byte')
-	"set encoding=utf-8
-	"set termencoding=utf-8
+"set encoding=utf-8
+"set termencoding=utf-8
 "endif
 
 " always show a status line

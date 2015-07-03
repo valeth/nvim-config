@@ -1,4 +1,6 @@
-set formatoptions+=j
+if v:version >= 704
+	set formatoptions+="j"
+endif
 
 set autoindent
 set smarttab
@@ -6,7 +8,7 @@ set smarttab
 " round the indent to a multiple o shiftwidth
 set shiftround
 
-if has("smartindent")
+if has('smartindent')
 	set smartindent
 endif
 
