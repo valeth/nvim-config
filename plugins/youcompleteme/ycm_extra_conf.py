@@ -9,7 +9,7 @@ import ycm_core
 # "flags" list of compilation flags. Notice that YCM itself uses that approach.
 compilation_database_folder = ""
 
-flags = [ "-Wall", "-Werror", "-std=c99" ]
+flags = [ "-Wall", "-Werror", "-std=c11" ]
 
 if os.path.exists( compilation_database_folder ):
     database = ycm_core.CompilationDatabase( compilation_database_folder )

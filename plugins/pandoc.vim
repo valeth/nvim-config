@@ -1,5 +1,5 @@
 " the filetypes for which vim-pandoc should be used
-let g:pandoc#filetypes#handles = [ "pandoc", "markdown" ]
+let g:pandoc#filetypes#handles = [ "markdown", "pandoc" ]
 
 " enable pandoc for markdown
 let g:pandoc#filetypes#pandoc_markdown = 1

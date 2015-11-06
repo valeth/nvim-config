@@ -14,7 +14,6 @@
 
 let g:seoul256_background       = 237
 let g:seoul256_light_background = 254
-colorscheme seoul256
 
 function! ToggleColorscheme()
     if g:colors_name == 'seoul256'
