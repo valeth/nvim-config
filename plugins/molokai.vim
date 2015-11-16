@@ -1,3 +1,5 @@
+Plug 'tomasr/molokai'
+
 set background=dark
 
 "let g:molokai_original = 1

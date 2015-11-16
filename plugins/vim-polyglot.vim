@@ -1,0 +1,1 @@
+Plug 'hoelzro/vim-polyglot'

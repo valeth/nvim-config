@@ -1,3 +1,8 @@
+if v:version >= 704
+    Plug 'vim-pandoc/vim-pandoc'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
+endif
+
 " the filetypes for which vim-pandoc should be used
 let g:pandoc#filetypes#handles = [ "markdown", "pandoc" ]
 
