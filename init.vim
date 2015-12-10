@@ -145,6 +145,6 @@ call plug#end()
 """""""""""""""
 " Colorscheme "
 """""""""""""""
-"colorscheme seoul256
-colorscheme molokai
+colorscheme seoul256
+"colorscheme molokai
 
