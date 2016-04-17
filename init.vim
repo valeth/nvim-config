@@ -40,7 +40,7 @@ set smartcase
 set listchars=tab:»\ ,trail:◆,extends:▹,precedes:◃,eol:↲,nbsp:·
 set showmatch
 set shortmess=aoOtTI
-set clipboard+=unnamedplus
+set clipboard+=unnamed
 set smartindent
 set undofile
 set splitbelow
@@ -57,7 +57,6 @@ set foldcolumn=1
 set foldlevel=99
 set foldmethod=syntax
 set foldtext=myfold#text()
-let g:sh_fold_enabled=1
 set visualbell
 set t_vb=
 
@@ -147,4 +146,6 @@ call plug#end()
 """""""""""""""
 colorscheme seoul256
 "colorscheme molokai
+"colorscheme PaperColor
+"colorscheme Tomorrow-Night
 
