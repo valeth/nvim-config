@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                                                             "
 "   Maintainer:   Patrick Auernig <patrick DOT auernig AT gmail DOT com>      "
-"   VIM Version:  NVIM 0.1.0                                                  "
+"   VIM Version:  NVIM 0.1.3                                                  "
 "                                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -144,8 +144,8 @@ call plug#end()
 """""""""""""""
 " Colorscheme "
 """""""""""""""
-colorscheme seoul256
+"colorscheme seoul256
 "colorscheme molokai
-"colorscheme PaperColor
+colorscheme PaperColor
 "colorscheme Tomorrow-Night
 
