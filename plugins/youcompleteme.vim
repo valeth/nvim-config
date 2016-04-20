@@ -1,6 +1,4 @@
-if v:version >= 704
-    Plug 'Valloric/YouCompleteMe', {'do': 'python2 install.py --clang-completer' }
-endif
+"Plug 'Valloric/YouCompleteMe', {'do': 'python2 install.py --clang-completer' }
 
 let g:ycm_global_ycm_extra_conf = g:vim_config_home . "/plugins/youcompleteme/ycm_extra_conf.py"
 
