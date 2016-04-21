@@ -1,0 +1,11 @@
+snippet mod "Create new module" b
+module ${1:`!v expand("%:p:h:t")`} (
+    ) where
+
+endsnippet
+
+snippet hdfun "Haddock function documentation" b
+-- | ${1:DESCRIPTION}
+-- ${2}
+endsnippet
+
