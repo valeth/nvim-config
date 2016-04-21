@@ -1,0 +1,18 @@
+global !p
+from ultisnips.all import *
+endglobal
+
+snippet wpanet "wpa_supplicant network entry" b
+network=\{
+	ssid="${1:SSID}"
+	key_mgmt=${2:WPA-PSK}
+	proto=${3:RSN WPA}
+	pairwise=${4:CCMP TKIP}
+	group=${5:CCMP TKIP}
+	#psk="${6:PSK}"
+	psk=`!p snip.rv = getWPAPassphraseHash(t[1], t[6])`
+	priority=${7:10}
+\}
+
+endsnippet
+
