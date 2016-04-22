@@ -1,5 +1,7 @@
 import subprocess
 import re
+import hashlib
+import binascii
 
 def getUsername(username, gecos = True, passwd = "/etc/passwd"):
     content = [x.split(":") for x in open(passwd, "r").readlines()]
@@ -20,6 +22,10 @@ def getWPAPassphraseHash(ssid, passphrase):
             if match:
                 return match.string.split("=")[1].strip()
     return ""
+
+def getEAPPassphraseHash(passphrase):
+    hash = hashlib.new("md4", passphrase.encode("utf-16le")).digest()
+    return binascii.hexlify(hash).decode("utf-8")
 
 if __name__ == "__main__":
     print(getWPAPassphraseHash("MySSID", "MySecurePassword"))
