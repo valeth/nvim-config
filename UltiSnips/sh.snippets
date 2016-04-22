@@ -10,7 +10,7 @@ endsnippet
 snippet fun "function" b
 function ${1:NAME}
 {
-    ${0:STATEMENTS}
+	${0:STATEMENTS}
 }
 endsnippet
 
@@ -18,7 +18,7 @@ endsnippet
 snippet switch "switch-case"
 case ${1:ARG} in
 ${2:PATTERN})
-    ${3:STATEMENTS}
+	${3:STATEMENTS}
 ;;
 esac
 endsnippet
@@ -26,37 +26,37 @@ endsnippet
 
 snippet if "if-then"
 if ${1:TEST}; then
-    ${2:STATEMENTS}
+	${2:STATEMENTS}
 fi
 endsnippet
 
 
 snippet ite "if-then-else"
 if ${1:TEST}; then
-    ${2:STATEMENTS}
+	${2:STATEMENTS}
 else
-    ${3:STATEMENTS}
+	${3:STATEMENTS}
 fi
 endsnippet
 
 
 snippet foreach "foreach loop"
 for ${1:ELEMENT} in ${2:LIST}; do
-    ${3:STATEMENTS}
+	${3:STATEMENTS}
 done
 endsnippet
 
 
 snippet forseq "for sequence"
 for ${1:VAR} in $(seq ${2:FROM} ${3:TO}); do
-    ${4:STATEMENTS}
+	${4:STATEMENTS}
 done
 endsnippet
 
 
 snippet while "while loop"
 while ${1:TEST}; do
-    ${2:STATEMENTS}
+	${2:STATEMENTS}
 done
 endsnippet
 
