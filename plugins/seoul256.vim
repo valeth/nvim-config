@@ -17,7 +17,7 @@ Plug 'junegunn/seoul256.vim'
 let g:seoul256_background       = 237
 let g:seoul256_light_background = 254
 
-function! ToggleColorscheme()
+function! ToggleSeoul256()
     if g:colors_name == 'seoul256'
         colorscheme seoul256-light
     else
@@ -25,14 +25,3 @@ function! ToggleColorscheme()
     endif
 endfunction
 
-function! SetColorschemeDark(value)
-    let g:seoul256_background = a:value
-    colorscheme seoul256
-endfunction
-
-function! SetColorschemeLight(value)
-    let g:seoul256_light_background = a:value
-    colorscheme seoul256-light
-endfunction
-
-noremap <leader>st :call ToggleColorscheme()<CR>

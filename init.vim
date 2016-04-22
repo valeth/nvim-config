@@ -84,6 +84,7 @@ nnoremap <Leader>vl :setlocal cursorline!<CR>
 nnoremap <Leader>vc :setlocal cursorcolumn!<CR>
 nnoremap <Leader>ve :setlocal colorcolumn=80<CR>
 nnoremap <Leader>vn :setlocal colorcolumn=0<CR>
+nnoremap <Leader>tcs :call ToggleColorscheme()<CR>
 nnoremap Y y$
 nnoremap j gj
 nnoremap k gk
@@ -144,8 +145,28 @@ call plug#end()
 """""""""""""""
 " Colorscheme "
 """""""""""""""
-"colorscheme seoul256
+function! ToggleColorscheme()
+    if g:colors_name == 'PaperColor'
+        call ToggleBackground()
+    elseif g:colors_name =~ 'seoul256'
+        call ToggleSeoul256()
+    elseif g:colors_name =~ 'Tomorrow'
+        call ToggleTomorrow()
+    endif
+
+    AirlineRefresh
+endfunction
+
+function! ToggleBackground()
+        if &background == 'dark'
+            set background=light
+        else
+            set background=dark
+        endif
+endfunction
+
 "colorscheme molokai
-colorscheme PaperColor
-"colorscheme Tomorrow-Night
+"colorscheme seoul256
+"colorscheme PaperColor
+colorscheme Tomorrow-Night
 
