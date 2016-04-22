@@ -10,30 +10,53 @@ ${1:int} ${2:main}(${3:void})
 	${0}
 	`!p snip.rv = returnval(t[1])`
 }
+
 endsnippet
 
 
-snippet todo "TODO comment" b
-/* TODO(`!p snip.rv = getUsername("valeth", True)`@`!v strftime("%d.%m.%y")`): ${1:Description} */
+snippet note "Add a note (TODO, FIXME or XXX)" b
+/* ${1}`!p
+snip.rv =getNoteCandidates(t[1])
+`(`!p
+snip.rv = getUsername("valeth", True)
+` @ `!v
+strftime("%d.%m.%y")
+`): ${2:DESCRIPTION} */
 endsnippet
 
 
 snippet doxfun "Doxygen function documentation" b
 /**
- * ${1:DESCRIPTION}
- * @brief   ${2:BRIEF}
- * @param   ${3:PARAM}
- * @return  ${4:RETURN}
- */
-
+* ${1:DESCRIPTION}
+* @brief   ${2:BRIEF}
+* @param   ${3:PARAM}
+* @return  ${4:RETURN}
+*/
 endsnippet
 
 
 snippet doxhead "Doxygen documentation file header" b
 /**
- * @author  ${1:`!p snip.rv = getUsername("valeth", True)`}
- * @date    ${2:`!v strftime("%d.%m.%Y")`}
- * @file    ${3:`!v expand("%:t")`}
- */
+* @author  ${1:`!p snip.rv = getUsername("valeth", True)`}
+* @date    ${2:`!v strftime("%d.%m.%Y")`}
+* @file    ${3:`!v expand("%:t")`}
+*/
+
+endsnippet
+
+
+snippet malloc "Allocate memory on the heap"
+${1:TYPE} *${2:NAME} = ($1 *)malloc(sizeof(*$2));
+endsnippet
+
+
+snippet calloc "Allocate memory on the heap"
+${1:TYPE} *${2:NAME} = ($1 *)calloc(${3:N}, sizeof(*$2));
+endsnippet
+
+
+snippet incl "Default includes"
+#include <stdlib.h>
+#include <stdio.h>
 endsnippet
 
