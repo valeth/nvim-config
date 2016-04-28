@@ -166,7 +166,7 @@ function! ToggleBackground()
 endfunction
 
 "colorscheme molokai
-"colorscheme seoul256
+colorscheme seoul256
 "colorscheme PaperColor
-colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night
 
