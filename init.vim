@@ -244,7 +244,167 @@ augroup END
 
 " Plugins                   {{{
 call plug#begin(g:vim_data_home . '/plugins')
-runtime! plugins/**/*.vim
+
+" deoplete                  {{{
+" run 'UpdateRemotePlugins' first
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/neco-syntax'
+Plug 'Shougo/neoinclude.vim', { 'for': ['c', 'cpp'] }
+Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+
+let g:deoplete#enable_at_startup = 1
+" }}}
+
+" ctrlp.vim                 {{{
+Plug 'kien/ctrlp.vim'
+
+let g:ctrlp_cmd = "CtrlPBuffer"
+let g:ctrlp_prompt_mappings = {
+    \ 'ToggleType(1)':        ['<c-l>', '<c-f>', '<c-up>'],
+    \ 'ToggleType(-1)':       ['<c-h>', '<c-b>', '<c-down>'],
+\ }
+" }}}
+
+" Gundo                     {{{
+Plug 'vim-scripts/Gundo', { 'on': 'GundoToggle' }
+
+let g:gundo_width = 60
+let g:gundo_preview_height = 30
+let g:gundo_right = 1
+
+nnoremap <silent> <leader>gu :GundoToggle<CR>
+vnoremap <silent> <leader>gu <ESC>:GundoToggle<CR>
+" }}}
+
+" latexsuite                {{{
+set grepprg=grep\ -nH\ $*
+
+let g:tex_flavor               = "latex"
+let g:tex_fold_enabled         = 1
+let g:Imap_UsePlaceHolders     = 0
+let g:Tex_ViewRule_dvi         = ""
+let g:Tex_ViewRule_ps          = ""
+let g:Tex_ViewRule_pdf         = ""
+let g:Tex_ViewRuleComplete_dvi = "pgrep okular.*$* || xdg-open &"
+let g:Tex_ViewRuleComplete_ps  = ""
+let g:Tex_ViewRuleComplete_pdf = "pgrep okular.*$* || xdg-open &"
+let g:Tex_DefaultTargetFormat  = "pdf"
+
+nnoremap <SID> <Plug>Tex_Help
+inoremap <SID> <Plug>Tex_Help
+nnoremap <SID> <Plug>IMAP_JumpForward
+vnoremap <SID> <Plug>IMAP_JumpForward
+"noremap <buffer> <F5> :w<CR> :!pdflatex -shell-escape "%" && { pgrep ".*%:p || xdg-open %:p:r.pdf }<CR>
+" }}}
+
+" nerdtree                  {{{
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+
+au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+noremap  <silent> <leader>nt :NERDTreeToggle<CR>
+vnoremap <silent> <leader>nt <ESC>:NERDTreeToggle<CR>
+" }}}
+
+" syntastic                 {{{
+Plug 'scrooloose/syntastic', {'for': ['c', 'cpp', 'python', 'sh']}
+
+let g:syntastic_enable_signs = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_c_check_header = 1
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_auto_refresh_includes = 1
+let g:syntastic_tex_checkers = ["false"]
+let g:syntastic_error_symbol = '!'
+let g:syntastic_warning_symbol = '?'
+nnoremap <leader>syn :SyntasticToggleMode<CR>
+vnoremap <leader>syn <ESC>:SyntasticToggleMode<CR>
+" }}}
+
+" tagbar                    {{{
+Plug 'majutsushi/tagbar'
+
+nnoremap <silent> <leader>tag :TagbarToggle<CR>
+vnoremap <silent> <leader>tag <ESC>:TagbarToggle<CR>
+" }}}
+
+" powerline/airline         {{{
+Plug 'bling/vim-airline'
+
+"set showtabline=2
+set laststatus=2
+set noshowmode
+
+"let g:powerline_pycmd  = "py3"
+"let g:powerline_pyeval = g:powerline_pycmd . "eval"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='dark'
+" }}}
+
+" scratch.vim               {{{
+Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
+
+" allow autohiding
+set hidden
+
+let g:scratch_persistence_file = g:vim_data_home . "/scratch.vim"
+" }}}
+
+" vim-pandoc                {{{
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
+" the filetypes for which vim-pandoc should be used
+let g:pandoc#filetypes#handles = [ "markdown", "pandoc" ]
+
+" enable pandoc for markdown
+let g:pandoc#filetypes#pandoc_markdown = 1
+
+" disable the spellchecker
+let g:pandoc#spell#enabled = 0
+
+" don't use the conceal functionality
+let g:pandoc#syntax#conceal#use = 0
+
+" would you please use the defined foldcolums settings, thanks
+let g:pandoc#folding#fdc = &fdc
+" }}}
+
+" vim-tmux-navigator        {{{
+Plug 'christoomey/vim-tmux-navigator'
+
+" use Alt instead of Ctrl
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+" }}}
+
+Plug 'Konfekt/FastFold'
+Plug 'Raimondi/delimitMate'
+Plug 'vim-scripts/fish-syntax'
+Plug 'valeth/sprak.vim', { 'for': 'sprak' }
+Plug 'hoelzro/vim-polyglot'
+Plug 'vim-scripts/gnupg'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcommit']}
+Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tomasr/molokai'
+Plug 'junegunn/seoul256.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'chriskempson/tomorrow-theme'
 call plug#end()
 " }}}
 
@@ -269,9 +429,36 @@ function! ToggleBackground()
         endif
 endfunction
 
+function! ToggleSeoul256()
+    if g:colors_name == 'seoul256'
+        colorscheme seoul256-light
+    else
+        colorscheme seoul256
+    endif
+endfunction
+
+function! ToggleTomorrow()
+    if g:colors_name == 'Tomorrow-Night'
+        colorscheme Tomorrow
+    else
+        colorscheme Tomorrow-Night
+    endif
+endfunction
+
+"let g:molokai_original = 1
+"let g:rehash256 = 1
 "colorscheme molokai
+
+"   Theme           Range       Default
+"   -----           -----       -------
+"   seoul256        233 - 239   237
+"   seoul256-light  252 - 256   253
+let g:seoul256_background       = 237
+let g:seoul256_light_background = 254
 colorscheme seoul256
+
 "colorscheme PaperColor
+
 "colorscheme Tomorrow-Night
 " }}}
 

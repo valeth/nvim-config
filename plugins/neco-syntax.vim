@@ -1,1 +1,0 @@
-Plug 'Shougo/neco-syntax'

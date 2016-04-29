@@ -1,1 +1,0 @@
-Plug 'NLKNguyen/papercolor-theme'
