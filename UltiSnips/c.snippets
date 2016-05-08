@@ -8,7 +8,7 @@ snippet fun "C function" b
 ${1:int} ${2:main}(${3:void})
 {
 	${0}
-	`!p snip.rv = returnval(t[1])`
+	return `!p snip.rv = returnval(t[1], t[2])`;
 }
 
 endsnippet
@@ -46,17 +46,54 @@ endsnippet
 
 
 snippet malloc "Allocate memory on the heap"
-${1:TYPE} *${2:NAME} = ($1 *)malloc(sizeof(*$2));
+${1:TYPE} ${2:NAME} = ($1)malloc(sizeof(*$2));
 endsnippet
 
 
 snippet calloc "Allocate memory on the heap"
-${1:TYPE} *${2:NAME} = ($1 *)calloc(${3:N}, sizeof(*$2));
+${1:TYPE} ${2:NAME} = ($1)calloc(${3:N}, sizeof(*$2));
 endsnippet
 
 
 snippet incl "Default includes"
 #include <stdlib.h>
 #include <stdio.h>
+endsnippet
+
+
+snippet for "For loop"
+for (${1:INITIALIZER}; ${2:TEST}; ${3:INCREMENTER}) \{
+	${4:#error "incomplete for loop"}
+\}
+endsnippet
+
+
+snippet while "While loop"
+while (${1:TEST}) \{
+	${2:#error "incomplete while loop"}
+\}
+endsnippet
+
+
+snippet if "If-Then control construct"
+if (${1:TEST}) \{
+	${2:#error "incomplete if branch"}
+\}
+endsnippet
+
+
+snippet ite "If-Then-Else control construct"
+if (${1:TEST}) \{
+	${2:#error "incomplete if branch"}
+\} else \{
+	${3:#error "incomplete else branch"}
+\}
+endsnippet
+
+
+snippet elif "Else-If control construct"
+else if (${1:TEST}) \{
+	${2:#error "incomplete elif branch"}
+\}
 endsnippet
 

@@ -1,6 +1,9 @@
-def returnval(t):
-    if t == "void":
+def returnval(rtype, fname):
+    if rtype == "void":
         return ""
+
+    if fname == "main":
+        return "EXIT_SUCCESS"
 
     ret = {
         "int": "0",
@@ -9,10 +12,10 @@ def returnval(t):
         "bool": "false"
     }
 
-    if t in ret.keys():
-        return "return " + ret[t] + ";"
+    if rtype in ret.keys():
+        return ret[rtype]
     else:
-        return "return NULL;"
+        return "NULL"
 
 def getNoteCandidates(t):
     options = ["TODO", "FIXME", "XXX"]
@@ -21,6 +24,6 @@ def getNoteCandidates(t):
 
     if len(options) == 1:
         return options[0]
-    
+
     return "[" + ",".join(options) + "]"
 
