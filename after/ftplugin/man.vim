@@ -1,12 +1,11 @@
 set readonly
-set nomod
+set nomodifiable
 set nolist
 set nocursorcolumn
 set colorcolumn=0
-set tabstop=8
 
+noremap q :q<CR>
+noremap <SPACE> <C-D>
+noremap b <C-U>
+nnoremap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>
 
-map q :q<CR>
-map <SPACE> <C-D>
-map b <C-U>
-nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>
