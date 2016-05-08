@@ -175,10 +175,13 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcommit']}
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
+
 Plug 'tomasr/molokai'
 Plug 'junegunn/seoul256.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'chriskempson/tomorrow-theme'
+
 call plug#end()
 " [Plugins] }}}
 
