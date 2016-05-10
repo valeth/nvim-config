@@ -105,6 +105,8 @@ let g:Tex_ViewRuleComplete_dvi = "pgrep okular.*$* || xdg-open &"
 let g:Tex_ViewRuleComplete_ps  = ""
 let g:Tex_ViewRuleComplete_pdf = "pgrep okular.*$* || xdg-open &"
 let g:Tex_DefaultTargetFormat  = "pdf"
+
+Plug 'WChargin/vim-latexsuite', { 'for': ['tex', 'latex'] }
 " <latexsuite> }}}
 
 " <nerdtree> {{{
