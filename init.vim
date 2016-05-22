@@ -71,7 +71,7 @@ set wildmode=list:longest,full
 " [Plugins] {{{
 call plug#begin(g:vim_data_home . '/plugins')
 
-" <deoplete> {{{
+" <Autocomplete> {{{
 function! DoRemote(arg)
     UpdateRemotePlugins
 endfunction
@@ -83,18 +83,37 @@ let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/vimproc.vim',      { 'do': 'make' }
 Plug 'Shougo/deoplete.nvim',    { 'do': function('DoRemote') }
 Plug 'Shougo/neco-syntax'
+Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neoinclude.vim',   { 'for': ['c', 'cpp'] }
 Plug 'Rip-Rip/clang_complete',  { 'for': ['c', 'cpp'] }
 "Plug 'zchee/deoplete-clang',    { 'for': ['c', 'cpp'] }
 Plug 'zchee/deoplete-jedi',     { 'for': ['python'] }
 Plug 'eagletmt/neco-ghc',       { 'for': ['haskell'] }
-" <deoplete> }}}
+Plug 'racer-rust/vim-racer',    { 'for': ['rust'] }
+"let g:racer_cmd = "/usr/bin/racer"
+"let $RUST_SRC_PATH = "/usr/src/rust/src/"
+" <Autocomplete> }}}
 
-" <ctrlp.vim> {{{
+" <Navigation> {{{
 Plug 'kien/ctrlp.vim'
-" <ctrlp.vim> }}}
+Plug 'Konfekt/FastFold'
+Plug 'majutsushi/tagbar'
 
-" <latexsuite> {{{
+Plug 'christoomey/vim-tmux-navigator'
+let g:tmux_navigator_no_mappings = 1
+
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" <Navigation> }}}
+
+" <Version Control> {{{
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+" <Version Control> }}}
+
+" <LaTeX> {{{
+Plug 'WChargin/vim-latexsuite', { 'for': ['tex', 'latex'] }
 let g:tex_flavor               = "latex"
 let g:tex_fold_enabled         = 1
 let g:Imap_UsePlaceHolders     = 0
@@ -105,20 +124,44 @@ let g:Tex_ViewRuleComplete_dvi = "pgrep okular.*$* || xdg-open &"
 let g:Tex_ViewRuleComplete_ps  = ""
 let g:Tex_ViewRuleComplete_pdf = "pgrep okular.*$* || xdg-open &"
 let g:Tex_DefaultTargetFormat  = "pdf"
+" <LaTeX> }}}
 
-Plug 'WChargin/vim-latexsuite', { 'for': ['tex', 'latex'] }
-" <latexsuite> }}}
+" <Pandoc> {{{
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
-" <nerdtree> {{{
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+let g:pandoc#filetypes#handles = [ "markdown", "pandoc" ]
+let g:pandoc#filetypes#pandoc_markdown = 1
+let g:pandoc#spell#enabled = 0
+let g:pandoc#syntax#conceal#use = 0
+let g:pandoc#folding#fdc = &fdc
+" <Pandoc> }}}
 
-au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" <nerdtree> }}}
+" <Snippets> {{{
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" <Snippets> }}}
 
-" <syntastic> {{{
-Plug 'scrooloose/syntastic', {'for': ['c', 'cpp', 'python', 'sh', 'ruby']}
+" <Syntax> {{{
+Plug 'vim-scripts/fish-syntax'
+Plug 'valeth/sprak.vim', { 'for': 'sprak' }
+Plug 'hoelzro/vim-polyglot'
+Plug 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" <Syntax> }}}
 
+" <Misc> {{{
+Plug 'bling/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='dark'
+let g:airline_powerline_fonts = 1
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
+
+Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
+let g:scratch_persistence_file = g:vim_data_home . "/scratch.vim"
+
+Plug 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_auto_loc_list = 1
@@ -130,59 +173,21 @@ let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_tex_checkers = ["false"]
 let g:syntastic_error_symbol = '☓'
 let g:syntastic_warning_symbol = '⚠'
-" <syntastic> }}}
 
-" <tagbar> {{{
-Plug 'majutsushi/tagbar'
-" <tagbar> }}}
-
-" <airline> {{{
-Plug 'bling/vim-airline'
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='dark'
-" <airline> }}}
-
-" <scratch.vim> {{{
-Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
-
-let g:scratch_persistence_file = g:vim_data_home . "/scratch.vim"
-" <scratch.vim> }}}
-
-" <vim-pandoc> {{{
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-
-let g:pandoc#filetypes#handles = [ "markdown", "pandoc" ]
-let g:pandoc#filetypes#pandoc_markdown = 1
-let g:pandoc#spell#enabled = 0
-let g:pandoc#syntax#conceal#use = 0
-let g:pandoc#folding#fdc = &fdc
-" <vim-pandoc> }}}
-
-" <vim-tmux-navigator> {{{
-Plug 'christoomey/vim-tmux-navigator'
-
-let g:tmux_navigator_no_mappings = 1
-" <vim-tmux-navigator> }}}
-
-Plug 'Konfekt/FastFold'
-Plug 'vim-scripts/fish-syntax'
-Plug 'valeth/sprak.vim', { 'for': 'sprak' }
-Plug 'hoelzro/vim-polyglot'
 Plug 'vim-scripts/gnupg'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'tpope/vim-fugitive', { 'on': ['Gstatus', 'Gcommit']}
-Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'cohama/lexima.vim'
+" <Misc> }}}
 
+" <Colorschemes> {{{
 Plug 'tomasr/molokai'
 Plug 'junegunn/seoul256.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'chriskempson/tomorrow-theme'
+" <Colorschemes> }}}
 
 call plug#end()
 " [Plugins] }}}
@@ -191,14 +196,14 @@ call plug#end()
 let g:mapleader = ","
 let g:maplocalleader = "\\"
 
-" <Command> {{{
+" <Commands> {{{
 command!  Wq    wq
 command!  WQ    wq
 command!  Q     q
 command!  W     w
-" <Command> }}}
+" <Commands> }}}
 
-" <Plugin> {{{
+" <Plugins> {{{
 nnoremap  <C-b>                     :CtrlPBuffer<CR>
 inoremap  <C-b>                     <C-o>:CtrlPBuffer<CR>
 nnoremap  <C-p>                     :CtrlP<CR>
@@ -219,7 +224,7 @@ nnoremap  <silent><M-j>             :TmuxNavigateDown<CR>
 nnoremap  <silent><M-k>             :TmuxNavigateUp<CR>
 nnoremap  <silent><M-l>             :TmuxNavigateRight<CR>
 nnoremap  <silent><M-\>             :TmuxNavigatePrevious<CR>
-" <Plugin> }}}
+" <Plugins> }}}
 
 " <Disabled> {{{
 nnoremap  <F1>                      <NOP>
@@ -330,40 +335,19 @@ augroup END
 
 " [Colorscheme] {{{
 function! ToggleColorscheme()
-    if g:colors_name =~ 'seoul256'
-        if g:colors_name == 'seoul256'
-            colorscheme seoul256-light
-        else
-            colorscheme seoul256
-        endif
-    elseif g:colors_name =~ 'Tomorrow'
-        if g:colors_name == 'Tomorrow-Night'
-            colorscheme Tomorrow
-        else
-            colorscheme Tomorrow-Night
-        endif
+    if g:colors_name == 'Tomorrow'
+        colorscheme seoul256
     else
-        if &background == 'dark'
-            set background=light
-        else
-            set background=dark
-        endif
+        colorscheme Tomorrow
     endif
+
     AirlineRefresh
 endfunction
 
-"   Theme           Range       Default
-"   -----           -----       -------
-"   seoul256        233 - 239   237
-"   seoul256-light  252 - 256   253
 let g:seoul256_background       = 237
 let g:seoul256_light_background = 254
 
-let g:rehash256 = 1
-
 colorscheme seoul256
-"colorscheme molokai
-"colorscheme PaperColor
-"colorscheme Tomorrow-Night
+
 " [Colorscheme] }}}
 
