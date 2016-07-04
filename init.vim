@@ -179,7 +179,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'cohama/lexima.vim'
+"Plug 'cohama/lexima.vim'
 " <Misc> }}}
 
 " <Colorschemes> {{{
