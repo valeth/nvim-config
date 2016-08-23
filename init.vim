@@ -90,6 +90,8 @@ Plug 'Rip-Rip/clang_complete',  { 'for': ['c', 'cpp'] }
 Plug 'zchee/deoplete-jedi',     { 'for': ['python'] }
 Plug 'eagletmt/neco-ghc',       { 'for': ['haskell'] }
 Plug 'racer-rust/vim-racer',    { 'for': ['rust'] }
+Plug 'fishbullet/deoplete-ruby', { 'for': ['ruby'] }
+Plug 'steelsojka/deoplete-flow', { 'for': ['javascript'] }
 "let g:racer_cmd = "/usr/bin/racer"
 "let $RUST_SRC_PATH = "/usr/src/rust/src/"
 " <Autocomplete> }}}
@@ -179,6 +181,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+
+Plug 'ngmy/vim-rubocop'
+let g:vimrubocop_config = $XDG_CONFIG_HOME . "/rubocop/default-modified.yml"
 "Plug 'cohama/lexima.vim'
 " <Misc> }}}
 
