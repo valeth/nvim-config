@@ -326,10 +326,12 @@ augroup END
 "au BufWritePost $MYVIMRC source $MYVIMRC
 
 " save automatically
-au FocusLost * :silent! wa
+autocmd FocusLost * :silent! wa
 
 " keep splits equal on terminal resize
-au VimResized * :wincmd =
+autocmd VimResized * :wincmd =
+
+autocmd BufWritePre * %s/\s\+$//e
 
 augroup Trailing
     au!
