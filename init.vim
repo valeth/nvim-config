@@ -25,7 +25,7 @@ set autochdir
 set autowriteall
 set breakindent
 set breakindentopt=sbr
-set clipboard+=unnamed
+set clipboard+=unnamed,unnamedplus
 set completeopt=longest,menuone,preview
 set confirm
 set foldcolumn=1
