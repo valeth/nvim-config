@@ -1,10 +1,12 @@
 " Maintainer:   Patrick Auernig <patrick DOT auernig AT gmail DOT com>
-" VIM Version:  NVIM 0.1.4
+" VIM Version:  NVIM 0.1.5
 " Source:       https://gitlab.com/valeth/vim-config
 " Mirror:       https://github.com/valeth/vim-config
 
 
-" [NVim Directories] {{{
+" ,----------------------,
+" |   NVim Directories   |
+" '----------------------'                                                   {{{
 let g:vim_config_home = split(&rtp, ',', 0)[0]
 
 if exists('$XDG_CACHE_HOME')
@@ -18,11 +20,14 @@ if exists('$XDG_DATA_HOME')
 else
     let g:vim_data_home = expand('$HOME/.local/share/') . v:progname
 endif
-" [NVim Directories] }}}
+" }}}
 
-" [Settings] {{{
+" ,----------------------,
+" |   Settings           |
+" '----------------------'                                                   {{{
 set autochdir
 set autowriteall
+set backupdir-=.
 set breakindent
 set breakindentopt=sbr
 set clipboard+=unnamed,unnamedplus
@@ -66,55 +71,41 @@ set wildignore+=*.pyc,*.class
 set wildignore+=*.pdf,*.aux
 set wildignore+=*.png,*.jpg
 set wildmode=list:longest,full
-" [Settings] }}}
+" }}}
 
-" [Plugins] {{{
+" ,----------------------,
+" |   Plugins            |
+" '----------------------'                                                   {{{
 call plug#begin(g:vim_data_home . '/plugins')
 
-" <Autocomplete> {{{
+" Autocomplete
 function! DoRemote(arg)
     UpdateRemotePlugins
 endfunction
-
 let g:deoplete#enable_at_startup = 1
-"let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-"let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
-
 Plug 'Shougo/vimproc.vim',      { 'do': 'make' }
 Plug 'Shougo/deoplete.nvim',    { 'do': function('DoRemote') }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neoinclude.vim',   { 'for': ['c', 'cpp'] }
 Plug 'Rip-Rip/clang_complete',  { 'for': ['c', 'cpp'] }
-"Plug 'zchee/deoplete-clang',    { 'for': ['c', 'cpp'] }
-Plug 'zchee/deoplete-jedi',     { 'for': ['python'] }
-Plug 'eagletmt/neco-ghc',       { 'for': ['haskell'] }
-Plug 'racer-rust/vim-racer',    { 'for': ['rust'] }
-Plug 'fishbullet/deoplete-ruby', { 'for': ['ruby'] }
-Plug 'steelsojka/deoplete-flow', { 'for': ['javascript'] }
-"let g:racer_cmd = "/usr/bin/racer"
-"let $RUST_SRC_PATH = "/usr/src/rust/src/"
-" <Autocomplete> }}}
+Plug 'zchee/deoplete-jedi',     { 'for': 'python' }
 
-" <Navigation> {{{
+" Navigation
 Plug 'kien/ctrlp.vim'
 Plug 'Konfekt/FastFold'
 Plug 'majutsushi/tagbar'
-
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
-
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" <Navigation> }}}
 
-" <Version Control> {{{
+" Version Control
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-" <Version Control> }}}
 
-" <LaTeX> {{{
+" LaTeX
 Plug 'WChargin/vim-latexsuite', { 'for': ['tex', 'latex'] }
 let g:tex_flavor               = "latex"
 let g:tex_fold_enabled         = 1
@@ -126,43 +117,54 @@ let g:Tex_ViewRuleComplete_dvi = "pgrep okular.*$* || xdg-open &"
 let g:Tex_ViewRuleComplete_ps  = ""
 let g:Tex_ViewRuleComplete_pdf = "pgrep okular.*$* || xdg-open &"
 let g:Tex_DefaultTargetFormat  = "pdf"
-" <LaTeX> }}}
 
-" <Pandoc> {{{
+" Pandoc
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
-let g:pandoc#filetypes#handles = [ "markdown", "pandoc" ]
+let g:pandoc#filetypes#handles = ['markdown', 'pandoc']
 let g:pandoc#filetypes#pandoc_markdown = 1
 let g:pandoc#spell#enabled = 0
 let g:pandoc#syntax#conceal#use = 0
 let g:pandoc#folding#fdc = &fdc
-" <Pandoc> }}}
 
-" <Snippets> {{{
+" Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" <Snippets> }}}
 
-" <Syntax> {{{
+" Syntax
 Plug 'vim-scripts/fish-syntax'
 Plug 'valeth/sprak.vim', { 'for': 'sprak' }
 Plug 'hoelzro/vim-polyglot'
 Plug 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" <Syntax> }}}
 
-" <Misc> {{{
+" Haskell
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+
+" Rust
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+
+" JavaScript
+Plug 'steelsojka/deoplete-flow', { 'for': 'javascript' }
+"Plug 'dsawardekar/ember.vim' ", { 'for': 'javascript' }
+
+" Ruby
+Plug 'vim-ruby/vim-ruby'
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
+Plug 'nyangry/rsense.vim', { 'for': 'ruby' }
+"Plug 'tpope/vim-rails', { 'for': 'ruby' }
+"Plug 'dsawardekar/portkey' ", { 'for': ['ruby', 'javascript'] }
+
+" Misc
 Plug 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='dark'
+let g:airline_theme = 'dark'
 let g:airline_powerline_fonts = 1
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
-
-Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
-let g:scratch_persistence_file = g:vim_data_home . "/scratch.vim"
-
+"Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
+"let g:scratch_persistence_file = g:vim_data_home . "/scratch.vim"
 Plug 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
@@ -175,40 +177,39 @@ let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_tex_checkers = ["false"]
 let g:syntastic_error_symbol = '☓'
 let g:syntastic_warning_symbol = '⚠'
-
-Plug 'vim-scripts/gnupg'
+"Plug 'vim-scripts/gnupg'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/indentLine.vim'
 
-Plug 'ngmy/vim-rubocop'
-let g:vimrubocop_config = $XDG_CONFIG_HOME . "/rubocop/default-modified.yml"
-"Plug 'cohama/lexima.vim'
-" <Misc> }}}
+" Autopairs
+Plug 'cohama/lexima.vim'
+"Plug 'Raimondi/delimitMate'
 
-" <Colorschemes> {{{
-Plug 'tomasr/molokai'
+" Colorschemes
+"Plug 'tomasr/molokai'
 Plug 'junegunn/seoul256.vim'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'chriskempson/tomorrow-theme'
-" <Colorschemes> }}}
+"Plug 'NLKNguyen/papercolor-theme'
+"Plug 'chriskempson/tomorrow-theme'
 
 call plug#end()
-" [Plugins] }}}
+" }}}
 
-" [Keymappings] {{{
+" ,----------------------,
+" |   Keymappings        |
+" '----------------------'                                                   {{{
 let g:mapleader = ","
 let g:maplocalleader = "\\"
 
-" <Commands> {{{
+" Commands>
 command!  Wq    wq
 command!  WQ    wq
 command!  Q     q
 command!  W     w
-" <Commands> }}}
 
-" <Plugins> {{{
+" Plugins
 nnoremap  <C-b>                     :CtrlPBuffer<CR>
 inoremap  <C-b>                     <C-o>:CtrlPBuffer<CR>
 nnoremap  <C-p>                     :CtrlP<CR>
@@ -229,9 +230,8 @@ nnoremap  <silent><M-j>             :TmuxNavigateDown<CR>
 nnoremap  <silent><M-k>             :TmuxNavigateUp<CR>
 nnoremap  <silent><M-l>             :TmuxNavigateRight<CR>
 nnoremap  <silent><M-\>             :TmuxNavigatePrevious<CR>
-" <Plugins> }}}
 
-" <Disabled> {{{
+" Disabled
 nnoremap  <F1>                      <NOP>
 inoremap  <F1>                      <NOP>
 nnoremap  <C-R>                     <NOP>
@@ -241,8 +241,8 @@ noremap   <Up>                      <NOP>
 noremap   <Down>                    <NOP>
 noremap   ^                         <NOP>
 noremap   $                         <NOP>
-" <Disabled> }}}
 
+" Other
 noremap   <silent><Leader><CR>      :noh<CR>
 nnoremap  U                         :redo<CR>
 nnoremap  <Leader>vl                :setlocal cursorline!<CR>
@@ -295,9 +295,11 @@ vnoremap  >                         >gv
 cnoremap  w!                        w !sudo tee % >/dev/null
 tnoremap  <ESC>                     <C-\><C-n>
 tnoremap  <Leader><ESC>             <ESC>
-" [Keymappings] }}}
+" }}}
 
-" [Autocommands] {{{
+" ,----------------------,
+" |   Autocommands       |
+" '----------------------'                                                   {{{
 "augroup LineReturn
 "    au!
 "    au BufReadPost *
@@ -338,9 +340,11 @@ augroup Trailing
     au InsertEnter * :set invlist
     au InsertLeave * :set invlist
 augroup END
-" [Autocommands] }}}
+" }}}
 
-" [Colorscheme] {{{
+" ,----------------------,
+" |   Colorscheme        |
+" '----------------------'                                                   {{{
 function! ToggleColorscheme()
     if g:colors_name == 'Tomorrow'
         colorscheme seoul256
@@ -356,5 +360,4 @@ let g:seoul256_light_background = 254
 
 colorscheme seoul256
 
-" [Colorscheme] }}}
-
+" }}}
