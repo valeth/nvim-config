@@ -97,13 +97,13 @@ Plug 'Konfekt/FastFold'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+"au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Version Control
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"Plug 'tpope/vim-fugitive'
+"Plug 'airblade/vim-gitgutter'
 
 " LaTeX
 Plug 'WChargin/vim-latexsuite', { 'for': ['tex', 'latex'] }
@@ -133,7 +133,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Syntax
-Plug 'vim-scripts/fish-syntax'
+"Plug 'vim-scripts/fish-syntax'
+Plug 'dag/vim-fish'
 Plug 'valeth/sprak.vim', { 'for': 'sprak' }
 Plug 'hoelzro/vim-polyglot'
 Plug 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
@@ -152,9 +153,9 @@ Plug 'steelsojka/deoplete-flow', { 'for': 'javascript' }
 " Ruby
 Plug 'vim-ruby/vim-ruby'
 Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
-Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
-Plug 'nyangry/rsense.vim', { 'for': 'ruby' }
+"Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+"Plug 'nyangry/rsense.vim', { 'for': 'ruby' }
 "Plug 'tpope/vim-rails', { 'for': 'ruby' }
 "Plug 'dsawardekar/portkey' ", { 'for': ['ruby', 'javascript'] }
 
