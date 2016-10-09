@@ -151,7 +151,7 @@ Plug 'steelsojka/deoplete-flow', { 'for': 'javascript' }
 "Plug 'dsawardekar/ember.vim' ", { 'for': 'javascript' }
 
 " Ruby
-Plug 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
 "Plug 'tpope/vim-bundler', { 'for': 'ruby' }
