@@ -185,6 +185,17 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/indentLine.vim'
 
+" Dragvisuals
+Plug 'tsaleh/vim-align'
+Plug 'taku-o/vim-vis'
+Plug 'clones/vim-cecutil'
+Plug 'atweiden/vim-dragvisuals'
+vmap  <expr>  <C-h>  DVB_Drag('left')
+vmap  <expr>  <C-l>  DVB_Drag('right')
+vmap  <expr>  <C-j>  DVB_Drag('down')
+vmap  <expr>  <C-k>  DVB_Drag('up')
+vmap  <expr>  <C-D>  DVB_Duplicate()
+
 " Autopairs
 Plug 'cohama/lexima.vim'
 "Plug 'Raimondi/delimitMate'
@@ -248,7 +259,7 @@ noremap   <silent><Leader><CR>      :noh<CR>
 nnoremap  U                         :redo<CR>
 nnoremap  <Leader>vl                :setlocal cursorline!<CR>
 nnoremap  <Leader>vc                :setlocal cursorcolumn!<CR>
-nnoremap  <Leader>ve                :setlocal colorcolumn=+3<CR>
+nnoremap  <Leader>ve                :setlocal colorcolumn=81<CR>
 nnoremap  <Leader>vn                :setlocal colorcolumn=0<CR>
 nnoremap  <Leader>tcs               :call ToggleColorscheme()<CR>
 nnoremap  Y                         y$
@@ -361,4 +372,11 @@ let g:seoul256_light_background = 254
 
 colorscheme seoul256
 
+" }}}
+
+" ,----------------------,
+" |   Other              |
+" '----------------------'                                                   {{{
+highlight ColorColumn ctermbg=red
+call matchadd('ColorColumn', '\%81v', 100)
 " }}}
