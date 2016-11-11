@@ -103,7 +103,7 @@ let g:tmux_navigator_no_mappings = 1
 
 " Version Control
 "Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 " LaTeX
 Plug 'WChargin/vim-latexsuite', { 'for': ['tex', 'latex'] }
@@ -136,7 +136,7 @@ Plug 'honza/vim-snippets'
 "Plug 'vim-scripts/fish-syntax'
 Plug 'dag/vim-fish'
 Plug 'valeth/sprak.vim', { 'for': 'sprak' }
-Plug 'hoelzro/vim-polyglot'
+Plug 'valeth/vim-polyglot'
 Plug 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
 
 " Haskell
@@ -152,12 +152,13 @@ Plug 'steelsojka/deoplete-flow', { 'for': 'javascript' }
 
 " Ruby
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+"Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
 "Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 "Plug 'nyangry/rsense.vim', { 'for': 'ruby' }
 "Plug 'tpope/vim-rails', { 'for': 'ruby' }
 "Plug 'dsawardekar/portkey' ", { 'for': ['ruby', 'javascript'] }
+Plug 'hallison/vim-rdoc', { 'for': 'ruby' }
 
 " Misc
 Plug 'bling/vim-airline'
