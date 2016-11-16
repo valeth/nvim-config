@@ -50,6 +50,7 @@ set notimeout
 set number
 set ruler
 set scrolloff=3
+set shell=sh " because vim's system function is shit
 set showmatch
 set showbreak=↳
 set shortmess=aoOtTI
@@ -97,9 +98,20 @@ Plug 'Konfekt/FastFold'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
-"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'scrooloose/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-"au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if exists("b:NERDTree") | setlocal nonumber norelativenumber | endif
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "~",
+    \ "Staged"    : "+",
+    \ "Untracked" : "*",
+    \ "Renamed"   : ">",
+    \ "Unmerged"  : "=",
+    \ "Deleted"   : "-",
+    \ "Dirty"     : "!",
+    \ "Unknown"   : "?"
+    \ }
 
 " Version Control
 "Plug 'tpope/vim-fugitive'
@@ -136,7 +148,7 @@ Plug 'honza/vim-snippets'
 "Plug 'vim-scripts/fish-syntax'
 Plug 'dag/vim-fish'
 Plug 'valeth/sprak.vim', { 'for': 'sprak' }
-Plug 'valeth/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 Plug 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
 
 " Haskell
@@ -152,13 +164,13 @@ Plug 'steelsojka/deoplete-flow', { 'for': 'javascript' }
 
 " Ruby
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-"Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
-Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
-"Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-"Plug 'nyangry/rsense.vim', { 'for': 'ruby' }
-"Plug 'tpope/vim-rails', { 'for': 'ruby' }
-"Plug 'dsawardekar/portkey' ", { 'for': ['ruby', 'javascript'] }
+Plug 'ngmy/vim-rubocop',  { 'for': 'ruby' }
 Plug 'hallison/vim-rdoc', { 'for': 'ruby' }
+"Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+"Plug 'tpope/vim-bundler',  { 'for': 'ruby' }
+"Plug 'nyangry/rsense.vim', { 'for': 'ruby' }
+"Plug 'tpope/vim-rails',    { 'for': 'ruby' }
+"Plug 'dsawardekar/portkey' ", { 'for': ['ruby', 'javascript'] }
 
 " Misc
 Plug 'bling/vim-airline'
@@ -185,6 +197,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/indentLine.vim'
+Plug 'vim-scripts/Tail-Bundle'
 
 " Dragvisuals
 Plug 'tsaleh/vim-align'
@@ -378,6 +391,6 @@ colorscheme seoul256
 " ,----------------------,
 " |   Other              |
 " '----------------------'                                                   {{{
-highlight ColorColumn ctermbg=red
+"highlight ColorColumn ctermbg=red
 call matchadd('ColorColumn', '\%81v', 100)
 " }}}
