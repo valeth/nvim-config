@@ -41,7 +41,6 @@ set gdefault
 set grepprg=grep\ -nH\ $*
 set hidden
 set ignorecase
-set list
 set listchars=tab:»\ ,trail:◆,extends:❯,precedes:❮,eol:↲,nbsp:·
 set matchtime=3
 set noshowmode
@@ -80,12 +79,9 @@ set wildmode=list:longest,full
 call plug#begin(g:vim_data_home . '/plugins')
 
 " Autocomplete
-function! DoRemote(arg)
-    UpdateRemotePlugins
-endfunction
 let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/vimproc.vim',      { 'do': 'make' }
-Plug 'Shougo/deoplete.nvim',    { 'do': function('DoRemote') }
+Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neoinclude.vim',   { 'for': ['c', 'cpp'] }
@@ -115,7 +111,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " Version Control
 "Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 
 " LaTeX
 Plug 'WChargin/vim-latexsuite', { 'for': ['tex', 'latex'] }
@@ -166,7 +162,7 @@ Plug 'steelsojka/deoplete-flow', { 'for': 'javascript' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'ngmy/vim-rubocop',  { 'for': 'ruby' }
 Plug 'hallison/vim-rdoc', { 'for': 'ruby' }
-"Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 "Plug 'tpope/vim-bundler',  { 'for': 'ruby' }
 "Plug 'nyangry/rsense.vim', { 'for': 'ruby' }
 "Plug 'tpope/vim-rails',    { 'for': 'ruby' }
@@ -352,9 +348,6 @@ augroup CursorHighlight
     au WinLeave * setlocal colorcolumn=0
 augroup END
 
-" reload initrc
-"au BufWritePost $MYVIMRC source $MYVIMRC
-
 " save automatically
 autocmd FocusLost * :silent! wa
 
@@ -362,12 +355,6 @@ autocmd FocusLost * :silent! wa
 autocmd VimResized * :wincmd =
 
 autocmd BufWritePre * %s/\s\+$//e
-
-augroup Trailing
-    au!
-    au InsertEnter * :set invlist
-    au InsertLeave * :set invlist
-augroup END
 " }}}
 
 " ,----------------------,
