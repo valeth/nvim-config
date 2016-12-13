@@ -196,8 +196,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'vim-scripts/indentLine.vim'
 Plug 'vim-scripts/Tail-Bundle'
+
+Plug 'Yggdroot/indentLine'
+let g:indentLine_char = '┆'
 
 " Dragvisuals
 Plug 'tsaleh/vim-align'
