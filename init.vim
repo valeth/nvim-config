@@ -354,7 +354,8 @@ autocmd FocusLost * :silent! wa
 " keep splits equal on terminal resize
 autocmd VimResized * :wincmd =
 
-autocmd BufWritePre * %s/\s\+$//e
+" remove trailing whitespace
+" autocmd BufWritePre * %s/\s\+$//e
 " }}}
 
 " ,----------------------,
