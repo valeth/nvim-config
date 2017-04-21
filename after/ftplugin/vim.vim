@@ -5,4 +5,3 @@ set foldmethod=marker
 set foldlevel=0
 
 let g:vimsyn_folding='af'
-
