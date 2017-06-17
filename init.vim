@@ -77,6 +77,8 @@ autocmd FocusLost * :silent! wa
 " keep splits equal on terminal resize
 autocmd VimResized * :wincmd =
 
-colorscheme seoul256
+set termguicolors
+colorscheme breezy
+let g:airline_theme='breezy'
 
 call matchadd('ColorColumn', '\%81v', 100)

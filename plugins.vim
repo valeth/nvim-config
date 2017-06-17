@@ -9,6 +9,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Konfekt/FastFold'
 Plug 'majutsushi/tagbar'
+Plug 'equalsraf/neovim-gui-shim'
+"Plug 'Shougo/denite.nvim'
 
 " [UI]
 Plug 'bling/vim-airline'
@@ -73,6 +75,6 @@ Plug 'ngmy/vim-rubocop',  { 'for': 'ruby' }
 Plug 'hallison/vim-rdoc', { 'for': 'ruby' }
 
 
-"Plug 'arcticicestudio/nord-vim'
+Plug 'valeth/breezy', { 'branch': 'swap-bg-color' }
 
 call plug#end()
