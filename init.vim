@@ -1,5 +1,5 @@
-" Maintainer:   Patrick Auernig <patrick DOT auernig AT gmail DOT com>
-" VIM Version:  NVIM 0.1.7
+" Maintainer:   Patrick Auernig <dev.patrick.auernig@gmail.com>
+" VIM Version:  NVIM 0.2.0
 " Source:       https://gitlab.com/valeth/vim-config
 " Mirror:       https://github.com/valeth/vim-config
 
@@ -23,6 +23,7 @@ set hidden
 set ignorecase
 set listchars=tab:»\ ,trail:◆,extends:❯,precedes:❮,eol:↲,nbsp:·
 set matchtime=3
+set mouse=a
 set noshowmode
 set noswapfile
 set notimeout
