@@ -1,18 +1,20 @@
 call plug#begin(g:vim_data_home . '/plugins')
 
-
-" [Misc]
+" [Misc] {{{
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
-" Plug 'cohama/lexima.vim'
+Plug 'cohama/lexima.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Konfekt/FastFold'
 Plug 'majutsushi/tagbar'
 Plug 'equalsraf/neovim-gui-shim'
+Plug 'wakatime/vim-wakatime'
+Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'Shougo/denite.nvim'
+" }}}
 
-" [UI]
+" [UI] {{{
 Plug 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'dark'
@@ -24,10 +26,19 @@ let g:indentLine_char = '┆'
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
 
+" Plug 'ryanoasis/vim-devicons'
+" let g:webdevicone_enable = 0
+
+" [NERDTree] {{{
 Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd bufenter * if exists("b:NERDTree") | setlocal nonumber norelativenumber | endif
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -40,9 +51,10 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Ignored"   : "☒",
     \ "Unknown"   : "?"
     \ }
+" [NERDTree] }}}
+" [UI] }}}
 
-
-" [Assistants]
+" [Assistants] {{{
 "Plug 'scrooloose/syntastic'
 "let g:syntastic_check_on_open             = 1
 "let g:syntastic_check_on_wq               = 0
@@ -57,8 +69,10 @@ let g:NERDTreeIndicatorMapCustom = {
 "let g:syntastic_warning_symbol            = '⚠'
 
 Plug 'w0rp/ale'
+Plug 'airblade/vim-gitgutter'
+" }}}
 
-" [Language Specific]
+" [Language Specific] {{{
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 let g:pandoc#syntax#conceal#use = 0
@@ -76,5 +90,6 @@ Plug 'hallison/vim-rdoc', { 'for': 'ruby' }
 
 
 Plug 'valeth/breezy', { 'branch': 'swap-bg-color' }
+" }}}
 
 call plug#end()
