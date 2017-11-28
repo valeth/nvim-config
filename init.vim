@@ -1,5 +1,5 @@
 " Maintainer:   Patrick Auernig <dev.patrick.auernig@gmail.com>
-" VIM Version:  NVIM 0.2.0
+" VIM Version:  NVIM v0.2.2
 " Source:       https://gitlab.com/valeth/vim-config
 " Mirror:       https://github.com/valeth/vim-config
 
