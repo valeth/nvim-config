@@ -6,6 +6,7 @@
 let g:vim_config_home = split(&rtp, ',')[0]
 let g:vim_data_home = &undodir[0:-6]
 
+" SETTINGS {{{
 set autowriteall
 set backupdir-=.
 set breakindent
@@ -13,7 +14,7 @@ set breakindentopt=sbr
 set clipboard+=unnamed,unnamedplus
 set completeopt=longest,menuone,preview
 set confirm
-set foldcolumn=1
+set foldcolumn=0
 set foldlevel=99
 set foldmethod=syntax
 set foldtext=myfold#text()
@@ -52,6 +53,7 @@ set wildignore+=*.pyc,*.class
 set wildignore+=*.pdf,*.aux
 set wildignore+=*.png,*.jpg
 set wildmode=list:longest,full
+" }}}
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
