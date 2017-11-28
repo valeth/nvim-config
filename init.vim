@@ -56,7 +56,7 @@ set wildmode=list:longest,full
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 runtime! plugins.vim
-runtime! keys.vim
+runtime! keymaps.vim
 
 augroup ToggleLineNumbers
     au!

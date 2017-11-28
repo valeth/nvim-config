@@ -92,3 +92,5 @@ vnoremap  >                         >gv
 cnoremap  w!                        w !sudo tee % >/dev/null
 tnoremap  <ESC>                     <C-\><C-n>
 tnoremap  <Leader><ESC>             <ESC>
+noremap   <C-c>                     <ESC>:Commentary<CR>
+vnoremap  <C-c>                     :Commentary<CR>
