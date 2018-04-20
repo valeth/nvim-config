@@ -84,7 +84,10 @@ autocmd FocusLost * :silent! wa
 autocmd VimResized * :wincmd =
 
 set termguicolors
-colorscheme breezy
-let g:airline_theme='breezy'
+colorscheme molokai
+let g:airline_theme = 'dark'
+" colorscheme breezy
+" let g:airline_theme='breezy'
 
 call matchadd('ColorColumn', '\%81v', 100)
+
