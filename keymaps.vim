@@ -78,9 +78,9 @@ nnoremap  g,                        g,zz
 nnoremap  <C-o>                     <C-o>zz
 nnoremap  <silent><leader>il        :set invlist<CR>
 vnoremap  <silent><leader>il        :<C-w>set invlist<CR>
-inoremap  <C-s>                     <C-o>:%s/
-nnoremap  <C-s>                     :%s/
-vnoremap  <C-s>                     :s/
+inoremap  <C-s>                     <C-o>:w<CR>
+nnoremap  <C-s>                     :w<CR>
+vnoremap  <C-s>                     :w<CR>
 nnoremap  /                         /\v
 vnoremap  /                         /\v
 inoremap  jk                        <ESC>
