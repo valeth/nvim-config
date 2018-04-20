@@ -4,7 +4,6 @@
 " Mirror:       https://github.com/valeth/vim-config
 
 let g:vim_config_home = split(&rtp, ',')[0]
-let g:vim_data_home = &undodir[0:-6]
 
 " SETTINGS {{{
 set autowriteall
@@ -57,7 +56,11 @@ set wildmode=list:longest,full
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+
+call plug#begin(expand("$XDG_DATA_HOME/nvim/plugins"))
 runtime! plugins.vim
+call plug#end()
+
 runtime! keymaps.vim
 
 augroup ToggleLineNumbers

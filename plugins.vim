@@ -1,44 +1,51 @@
-call plug#begin(g:vim_data_home . '/plugins')
-
-" [Misc] {{{
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-commentary'
-Plug 'sheerun/vim-polyglot'
+Plug 'airblade/vim-gitgutter'
+Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'bling/vim-airline'
 Plug 'cohama/lexima.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'dag/vim-fish', { 'for': 'fish' }
+Plug 'editorconfig/editorconfig-vim'
+Plug 'hallison/vim-rdoc', { 'for': 'ruby' }
 Plug 'Konfekt/FastFold'
+Plug 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
 Plug 'majutsushi/tagbar'
-Plug 'equalsraf/neovim-gui-shim'
+Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-commentary'
+Plug 'valeth/breezy', { 'branch': 'swap-bg-color' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown'] }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown'] }
+Plug 'w0rp/ale'
 Plug 'wakatime/vim-wakatime'
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+Plug 'Yggdroot/indentLine', { 'for': 'python' }
 Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'Shougo/denite.nvim'
-" }}}
 
-" [UI] {{{
-Plug 'bling/vim-airline'
+" # Configuration
+
+" ## vim-airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'dark'
 let g:airline_powerline_fonts = 1
+" }}}
 
-Plug 'Yggdroot/indentLine', { 'for': 'python' }
+" ## indentLine {{{
 let g:indentLine_char = '┆'
+""" }}}
 
-Plug 'christoomey/vim-tmux-navigator'
+" ## vim-tmux-navigator {{{
 let g:tmux_navigator_no_mappings = 1
+" }}}
 
-" Plug 'ryanoasis/vim-devicons'
-" let g:webdevicone_enable = 0
-
-" [NERDTree] {{{
-Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-
+" ## nerdtree {{{
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd bufenter * if exists("b:NERDTree") | setlocal nonumber norelativenumber | endif
-
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -51,45 +58,16 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Ignored"   : "☒",
     \ "Unknown"   : "?"
     \ }
-" [NERDTree] }}}
-" [UI] }}}
-
-" [Assistants] {{{
-"Plug 'scrooloose/syntastic'
-"let g:syntastic_check_on_open             = 1
-"let g:syntastic_check_on_wq               = 0
-"let g:syntastic_auto_loc_list             = 1
-"let g:syntastic_loc_list_height           = 5
-"let g:syntastic_c_check_header            = 1
-"let g:syntastic_cpp_remove_include_errors = 1
-"let g:syntastic_cpp_check_header          = 1
-"let g:syntastic_cpp_auto_refresh_includes = 1
-"let g:syntastic_tex_checkers              = ["false"]
-"let g:syntastic_error_symbol              = '☓'
-"let g:syntastic_warning_symbol            = '⚠'
-
-Plug 'w0rp/ale'
-Plug 'airblade/vim-gitgutter'
 " }}}
 
-" [Language Specific] {{{
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+" ## vim-pandoc {{{
 let g:pandoc#syntax#conceal#use = 0
 let g:pandoc#folding#fdc = &fdc
-" let g:pandoc#filetypes#handles = ['markdown', 'pandoc']
-" let g:pandoc#filetypes#pandoc_markdown = 1
-" let g:pandoc#spell#enabled = 0
-
-Plug 'dag/vim-fish', { 'for': 'fish' }
-Plug 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'ngmy/vim-rubocop',  { 'for': 'ruby' }
-Plug 'hallison/vim-rdoc', { 'for': 'ruby' }
-
-
-Plug 'valeth/breezy', { 'branch': 'swap-bg-color' }
+let g:pandoc#spell#enabled = 0
 " }}}
 
-call plug#end()
+" ## deoplete + LanguageClient {{{
+Plug 'autozimu/LanguageClient-neovim', { 'do': 'bash install.sh' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+" }}}
