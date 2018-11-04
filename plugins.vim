@@ -22,7 +22,6 @@ Plug 'w0rp/ale'
 Plug 'wakatime/vim-wakatime'
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'Yggdroot/indentLine', { 'for': 'python' }
-" Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " # Configuration
 
