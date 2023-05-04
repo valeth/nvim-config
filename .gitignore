@@ -1,5 +1,1 @@
-*.bak
-*.old
-*.pyc
 .netrwhist
-.init.vim-rplugin~
