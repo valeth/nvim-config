@@ -17,12 +17,15 @@ return require("packer").startup(function(use)
         "VonHeikemen/lsp-zero.nvim",
         branch = "v2.x",
         requires = {
-            {"neovim/nvim-lspconfig"},
-            {"hrsh7th/nvim-cmp"},
-            {"hrsh7th/cmp-nvim-lsp"},
-            {"hrsh7th/cmp-path"},
-            {"williamboman/mason.nvim"},
-            {"williamboman/mason-lspconfig.nvim"},
+            { "neovim/nvim-lspconfig" },
+            { "hrsh7th/nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-path" },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "L3MON4D3/LuaSnip" },
+            { "rafamadriz/friendly-snippets" },
+            { "williamboman/mason.nvim" },
+            { "williamboman/mason-lspconfig.nvim" },
         }
     }
 
@@ -34,7 +37,7 @@ return require("packer").startup(function(use)
     use {
         "CantoroMC/ayu-nvim",
         config = function()
-            vim.cmd("colorscheme ayu")
+            vim.cmd.colorscheme("ayu")
         end
     }
 
@@ -59,8 +62,19 @@ return require("packer").startup(function(use)
 
     use {
         "windwp/nvim-autopairs",
+        requires = {
+            { "hrsh7th/nvim-cmp" },
+        },
         config = function()
-            require("nvim-autopairs").setup()
+            local ap = require("nvim-autopairs")
+            local ap_cmp = require("nvim-autopairs.completion.cmp")
+            local cmp = require("cmp")
+
+            cmp.event:on("confirm_done", ap_cmp.on_confirm_done())
+
+            ap.setup {
+                check_ts = true
+            }
         end
     }
 
@@ -71,8 +85,8 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope.nvim",
         tag = "0.1.1",
         requires = {
-            {"nvim-lua/plenary.nvim"},
-            {"nvim-treesitter/nvim-treesitter"},
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-treesitter/nvim-treesitter" },
         },
         config = function()
             require("telescope").load_extension("harpoon")
@@ -82,8 +96,17 @@ return require("packer").startup(function(use)
     use {
         "ThePrimeagen/harpoon",
         requires = {
-            {"nvim-lua/plenary.nvim"},
+            { "nvim-lua/plenary.nvim" },
         }
     }
 
+    use {
+        "jiaoshijie/undotree",
+        requires = {
+            "nvim-lua/plenary.nvim"
+        },
+        config = function()
+            require("undotree").setup()
+        end
+    }
 end)

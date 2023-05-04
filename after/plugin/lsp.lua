@@ -10,22 +10,37 @@ lsp.nvim_workspace()
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
-lsp.setup_nvim_cmp({
-    mapping = lsp.defaults.cmp_mappings({
+local cmp_mapping = lsp.defaults.cmp_mappings({
         ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
         ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<C-Space>"] = cmp.mapping.complete(),
-    })
 })
 
-lsp.on_attach(function(client,  buffnr)
-    lsp.default_keymaps({ buffer = buffnr })
+lsp.setup_nvim_cmp({ mapping = cmp_mapping })
+
+-- Gimme pretty icons
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = '»'
+})
+
+lsp.on_attach(function(_,  buffnr)
+    local opts = { buffer = buffnr, remap = false }
+
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<Leader>re", vim.lsp.buf.rename, opts)
+    vim.keymap.set({"n", "i"}, "<C-h>", vim.lsp.buf.signature_help, opts)
 
     vim.keymap.set("n", "<Leader>fmt", function()
         vim.lsp.buf.format({ async = false, timeout_ms =  5000 })
     end)
 end)
+
 
 -- NOTE: Format on save does not support async formatting
 lsp.format_on_save({
@@ -33,6 +48,5 @@ lsp.format_on_save({
         ["rust_analyzer"] = {"rust"}
     }
 })
-
 
 lsp.setup()

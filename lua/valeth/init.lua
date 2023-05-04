@@ -23,3 +23,12 @@ vim.keymap.set({"n", "v", "i"}, "<C-s>", "<cmd>w<CR>")
 vim.keymap.set({"n", "v"}, "<F1>", "<NOP>")
 vim.keymap.set("n", "s", "<NOP>")
 
+
+-- Some nice remaps (thanks Prime)
+
+-- Move selected lines up or down
+vim.keymap.set("v", "J", ":move '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":move '<-2<CR>gv=gv")
+
+-- Join lines without moving the cursor
+vim.keymap.set("n", "J", "mzJ`z")
