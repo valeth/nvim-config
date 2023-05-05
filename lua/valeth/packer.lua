@@ -8,6 +8,8 @@ return require("packer").startup(function(use)
         end
     }
 
+    use "nvim-treesitter/nvim-treesitter-context"
+
     use "wakatime/vim-wakatime"
 
 
@@ -60,24 +62,6 @@ return require("packer").startup(function(use)
         end
     }
 
-    use {
-        "windwp/nvim-autopairs",
-        requires = {
-            { "hrsh7th/nvim-cmp" },
-        },
-        config = function()
-            local ap = require("nvim-autopairs")
-            local ap_cmp = require("nvim-autopairs.completion.cmp")
-            local cmp = require("cmp")
-
-            cmp.event:on("confirm_done", ap_cmp.on_confirm_done())
-
-            ap.setup {
-                check_ts = true
-            }
-        end
-    }
-
 
     ---- Navigation
 
@@ -91,6 +75,21 @@ return require("packer").startup(function(use)
         config = function()
             require("telescope").load_extension("harpoon")
         end
+    }
+
+    use {
+        "prichrd/netrw.nvim",
+        config = function()
+            require("netrw").setup()
+        end
+    }
+
+    use {
+        "valeth/remote-sshfs.nvim",
+        branch = "no-cwd-on-jobstart",
+        requires = {
+            { "nvim-telescope/telescope.nvim" },
+        }
     }
 
     use {
