@@ -1,5 +1,35 @@
-return require("packer").startup(function(use)
+local function install_packer(path)
+    vim.fn.system({
+        "git", "clone", "--depth", "1",
+        "https://github.com/wbthomason/packer.nvim",
+        path
+    })
+
+    vim.cmd [[packadd packer.nvim]]
+end
+
+local function ensure_packer()
+    local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+
+    if not vim.fn.isdirectory(install_path) then
+        install_packer(install_path)
+        return true
+    end
+
+    return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+
+-- Plugins
+
+local spec = function(use)
     use "wbthomason/packer.nvim"
+
+    if packer_bootstrap then
+        require("packer").sync()
+    end
 
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -11,6 +41,19 @@ return require("packer").startup(function(use)
     use "nvim-treesitter/nvim-treesitter-context"
 
     use "wakatime/vim-wakatime"
+
+    -- Currently doesn't seem to have an option to make it off by default easily
+    use {
+        "andweeb/presence.nvim",
+        disable = true,
+        config = function()
+            local presence = require("presence")
+
+            presence.setup({
+                show_time = false,
+            })
+        end
+    }
 
 
     ---- LSP Stuff
@@ -39,6 +82,7 @@ return require("packer").startup(function(use)
     use {
         "CantoroMC/ayu-nvim",
         config = function()
+            vim.g.ayu_mirage = true
             vim.cmd.colorscheme("ayu")
         end
     }
@@ -108,4 +152,25 @@ return require("packer").startup(function(use)
             require("undotree").setup()
         end
     }
-end)
+end
+
+
+-- Automatically reload packer configuration on write
+vim.cmd([[
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost packer.lua source <afile> | PackerCompile
+    augroup end
+]])
+
+
+return require("packer").startup {
+    spec,
+    config = {
+        display = {
+            open_fn = function()
+                return require("packer.util").float({ border = "single" })
+            end
+        }
+    }
+}
