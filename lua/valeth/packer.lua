@@ -24,7 +24,7 @@ local packer_bootstrap = ensure_packer()
 
 -- Plugins
 
-local spec = function(use)
+local function spec(use)
     use "wbthomason/packer.nvim"
 
     if packer_bootstrap then
@@ -123,6 +123,7 @@ local spec = function(use)
 
     use {
         "prichrd/netrw.nvim",
+        disable = true,
         config = function()
             require("netrw").setup()
         end
@@ -152,6 +153,13 @@ local spec = function(use)
             require("undotree").setup()
         end
     }
+
+    use {
+        "nvim-tree/nvim-tree.lua",
+        requires = {
+            { "nvim-tree/nvim-web-devicons" },
+        }
+    }
 end
 
 
@@ -169,7 +177,18 @@ return require("packer").startup {
     config = {
         display = {
             open_fn = function()
-                return require("packer.util").float({ border = "single" })
+                return require("packer.util").float({
+                    border = {
+                        { '╭', 'FloatBorder' },
+                        { '─', 'FloatBorder' },
+                        { '╮', 'FloatBorder' },
+                        { '│', 'FloatBorder' },
+                        { '╯', 'FloatBorder' },
+                        { '─', 'FloatBorder' },
+                        { '╰', 'FloatBorder' },
+                        { '│', 'FloatBorder' },
+                    },
+                })
             end
         }
     }
