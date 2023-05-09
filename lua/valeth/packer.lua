@@ -76,6 +76,9 @@ local function spec(use)
 
     use "mhartington/formatter.nvim"
 
+    -- Doesn't seem to work properly atm
+    use "lvimuser/lsp-inlayhints.nvim"
+
 
     ---- Just Visual Stuff
 
@@ -93,6 +96,60 @@ local function spec(use)
         "lewis6991/gitsigns.nvim",
         config = function()
             require("gitsigns").setup()
+        end
+    }
+
+    use {
+        "nvim-lualine/lualine.nvim",
+        requires = {
+            { "nvim-tree/nvim-web-devicons" }
+        },
+        config = function()
+            local overseer = require("overseer")
+            local task_status = {
+                "overseer",
+                colored = true,
+                symbols = {
+                    [overseer.STATUS.FAILURE] = "✗ ",
+                    [overseer.STATUS.CANCELED] = "o",
+                    [overseer.STATUS.SUCCESS] = "✓ ",
+                    [overseer.STATUS.RUNNING] = "⟳ ",
+                },
+            }
+
+            require("lualine").setup({
+                sections = {
+                    lualine_x = {
+                        task_status,
+                        "encoding",
+                        { "fileformat", icons_enabled = false },
+                        "filetype"
+                    }
+                },
+            })
+        end
+    }
+
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup {
+                space_char_blankline = " ",
+                show_current_context = true,
+                show_current_context_start = false,
+            }
+        end
+    }
+
+    use {
+        "laytan/cloak.nvim",
+        config = function()
+            require("cloak").setup({
+                cloak_length = 5,
+                patterns = {
+                    { file_pattern = "*.env*", cloak_pattern = "=.+" }
+                }
+            })
         end
     }
 
@@ -159,6 +216,13 @@ local function spec(use)
         requires = {
             { "nvim-tree/nvim-web-devicons" },
         }
+    }
+
+    use {
+        "stevearc/overseer.nvim",
+        config = function()
+            require('overseer').setup()
+        end
     }
 end
 

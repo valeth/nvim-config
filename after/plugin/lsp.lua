@@ -19,6 +19,10 @@ local cmp_mapping = lsp.defaults.cmp_mappings({
 
 lsp.setup_nvim_cmp({ mapping = cmp_mapping })
 
+vim.diagnostic.config({
+    virtual_text = false,
+})
+
 -- Gimme pretty icons
 lsp.set_sign_icons({
   error = '✘',
@@ -49,4 +53,8 @@ lsp.format_on_save({
     }
 })
 
+
+
 lsp.setup()
+
+require("lsp-inlayhints").setup()
