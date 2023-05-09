@@ -102,32 +102,9 @@ local function spec(use)
     use {
         "nvim-lualine/lualine.nvim",
         requires = {
-            { "nvim-tree/nvim-web-devicons" }
-        },
-        config = function()
-            local overseer = require("overseer")
-            local task_status = {
-                "overseer",
-                colored = true,
-                symbols = {
-                    [overseer.STATUS.FAILURE] = "✗ ",
-                    [overseer.STATUS.CANCELED] = "o",
-                    [overseer.STATUS.SUCCESS] = "✓ ",
-                    [overseer.STATUS.RUNNING] = "⟳ ",
-                },
-            }
-
-            require("lualine").setup({
-                sections = {
-                    lualine_x = {
-                        task_status,
-                        "encoding",
-                        { "fileformat", icons_enabled = false },
-                        "filetype"
-                    }
-                },
-            })
-        end
+            { "nvim-tree/nvim-web-devicons" },
+            { "stevearc/overseer.nvim" },
+        }
     }
 
     use {
