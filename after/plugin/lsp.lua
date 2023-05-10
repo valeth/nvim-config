@@ -56,6 +56,4 @@ lsp.format_on_save({
     }
 })
 
-require("lsp-inlayhints").setup()
-
 lsp.setup()
