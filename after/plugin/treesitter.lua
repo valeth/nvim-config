@@ -1,5 +1,5 @@
 require("nvim-treesitter.configs").setup {
-    ensure_installed = { "rust", "lua", "javascript" },
+    ensure_installed = { "rust", "lua", "javascript", "typescript" },
 
     auto_install = true,
 
@@ -10,3 +10,7 @@ require("nvim-treesitter.configs").setup {
 }
 
 require("treesitter-context").setup()
+
+require("nvim-treesitter.configs").setup {
+    endwise = { enable = true }
+}

@@ -17,6 +17,10 @@ local cmp_mapping = lsp.defaults.cmp_mappings({
     ["<C-Space>"] = cmp.mapping.complete(),
 })
 
+-- Hitting tab should indent, not complete
+cmp_mapping["<Tab>"] = nil
+cmp_mapping["<S-Tab>"] = nil
+
 lsp.setup_nvim_cmp({ mapping = cmp_mapping })
 
 vim.diagnostic.config({
