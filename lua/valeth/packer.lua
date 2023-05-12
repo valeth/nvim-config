@@ -11,7 +11,7 @@ end
 local function ensure_packer()
     local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
-    if not vim.fn.isdirectory(install_path) then
+    if vim.fn.isdirectory(install_path) == 0 then
         install_packer(install_path)
         return true
     end
@@ -26,10 +26,6 @@ local packer_bootstrap = ensure_packer()
 
 local function spec(use)
     use "wbthomason/packer.nvim"
-
-    if packer_bootstrap then
-        require("packer").sync()
-    end
 
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -247,6 +243,10 @@ local function spec(use)
             require('overseer').setup()
         end
     }
+
+    if packer_bootstrap then
+        require("packer").sync()
+    end
 end
 
 
