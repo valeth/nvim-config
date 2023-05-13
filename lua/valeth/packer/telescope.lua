@@ -1,6 +1,8 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 
+telescope.load_extension("harpoon")
+
 telescope.setup {
     pickers = {
         buffers = {

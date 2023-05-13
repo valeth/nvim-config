@@ -29,12 +29,14 @@ local function spec(use)
 
     use {
         "nvim-treesitter/nvim-treesitter",
+        requires = {
+            { "nvim-treesitter/nvim-treesitter-context" }
+        },
         run = function()
-            require("nvim-treesitter.install").update({ with_sync = true })()
+            require("valeth.packer.treesitter")
         end
     }
 
-    use "nvim-treesitter/nvim-treesitter-context"
 
     use "wakatime/vim-wakatime"
 
@@ -52,7 +54,10 @@ local function spec(use)
     }
 
     use {
-        "stevearc/resession.nvim"
+        "stevearc/resession.nvim",
+        config = function()
+            require("valeth.packer.session")
+        end
     }
 
 
@@ -66,16 +71,7 @@ local function spec(use)
             { "hrsh7th/nvim-cmp" },
         },
         config = function()
-            require("crates").setup()
-            local cmp = require("cmp")
-
-            vim.api.nvim_create_autocmd("BufRead", {
-                group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
-                pattern = "Cargo.toml",
-                callback = function()
-                    cmp.setup.buffer({ sources = { { name = "crates" } } })
-                end,
-            })
+            require("valeth.packer.crates")
         end
     }
 
@@ -99,7 +95,10 @@ local function spec(use)
             { "rafamadriz/friendly-snippets" },
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
-        }
+        },
+        config = function()
+            require("valeth.packer.lsp")
+        end
     }
 
     use "mhartington/formatter.nvim"
@@ -129,7 +128,10 @@ local function spec(use)
         requires = {
             { "nvim-tree/nvim-web-devicons" },
             { "stevearc/overseer.nvim" },
-        }
+        },
+        config = function()
+            require("valeth.packer.lualine")
+        end
     }
 
     use {
@@ -193,7 +195,7 @@ local function spec(use)
             { "nvim-treesitter/nvim-treesitter" },
         },
         config = function()
-            require("telescope").load_extension("harpoon")
+            require("valeth.packer.telescope")
         end
     }
 
@@ -210,7 +212,10 @@ local function spec(use)
         branch = "no-cwd-on-jobstart",
         requires = {
             { "nvim-telescope/telescope.nvim" },
-        }
+        },
+        config = function()
+            require("valeth.packer.sshfs")
+        end
     }
 
     use {
@@ -226,7 +231,7 @@ local function spec(use)
             "nvim-lua/plenary.nvim"
         },
         config = function()
-            require("undotree").setup()
+            require("valeth.packer.undotree")
         end
     }
 
@@ -234,7 +239,10 @@ local function spec(use)
         "nvim-tree/nvim-tree.lua",
         requires = {
             { "nvim-tree/nvim-web-devicons" },
-        }
+        },
+        config = function()
+            require("valeth.packer.nvim-tree")
+        end
     }
 
     use {
