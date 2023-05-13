@@ -84,15 +84,20 @@ local function spec(use)
 
     use {
         "VonHeikemen/lsp-zero.nvim",
-        branch = "v2.x",
+        branch = "v1.x",
         requires = {
             { "neovim/nvim-lspconfig" },
+            -- completion
             { "hrsh7th/nvim-cmp" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-path" },
+            -- formatting
+            { "mhartington/formatter.nvim" },
+            -- snippets
             { "saadparwaiz1/cmp_luasnip" },
             { "L3MON4D3/LuaSnip" },
             { "rafamadriz/friendly-snippets" },
+            -- lsp manager
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
         },
@@ -100,8 +105,6 @@ local function spec(use)
             require("valeth.packer.lsp")
         end
     }
-
-    use "mhartington/formatter.nvim"
 
 
     ---- Just Visual Stuff
@@ -204,17 +207,6 @@ local function spec(use)
         disable = true,
         config = function()
             require("netrw").setup()
-        end
-    }
-
-    use {
-        "valeth/remote-sshfs.nvim",
-        branch = "no-cwd-on-jobstart",
-        requires = {
-            { "nvim-telescope/telescope.nvim" },
-        },
-        config = function()
-            require("valeth.packer.sshfs")
         end
     }
 
