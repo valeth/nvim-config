@@ -10,11 +10,14 @@ local function session_name()
     end
 end
 
+local function started_without_args()
+    return vim.fn.argc(-1) == 0
+end
+
+-- Only restore and save session if NeoVim was started without any arguments
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
-        local started_without_args = vim.fn.argc(-1) == 0
-
-        if started_without_args then
+        if started_without_args() then
             resession.load(session_name(), { dir = "dirsession", silence_errors = true })
         end
     end
@@ -22,7 +25,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
     callback = function()
-        resession.save(session_name(), { dir = "dirsession", notify = false })
+        if started_without_args() then
+            resession.save(session_name(), { dir = "dirsession", notify = false })
+        end
     end
 })
 
