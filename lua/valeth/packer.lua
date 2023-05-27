@@ -191,7 +191,10 @@ local function spec(use)
         "TimUntersberger/neogit",
         requires = {
             { "nvim-lua/plenary.nvim" },
-        }
+        },
+        config = function ()
+            require("valeth.packer.neogit")
+        end
     }
 
 
