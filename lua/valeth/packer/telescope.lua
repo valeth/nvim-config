@@ -4,6 +4,9 @@ local actions = require("telescope.actions")
 telescope.load_extension("harpoon")
 
 telescope.setup {
+    defaults = {
+        initial_mode = "normal"
+    },
     pickers = {
         buffers = {
             mappings = {
