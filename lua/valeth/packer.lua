@@ -43,13 +43,8 @@ local function spec(use)
     -- Currently doesn't seem to have an option to make it off by default easily
     use {
         "andweeb/presence.nvim",
-        disable = true,
         config = function()
-            local presence = require("presence")
-
-            presence.setup({
-                show_time = false,
-            })
+            require("valeth.packer.presence")
         end
     }
 
