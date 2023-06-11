@@ -37,8 +37,12 @@ local function spec(use)
         end
     }
 
-
-    use "wakatime/vim-wakatime"
+    use {
+        "wakatime/vim-wakatime",
+        cond = function()
+            return not (os.getenv("WAKATIME_HOME") == nil)
+        end
+    }
 
     -- Currently doesn't seem to have an option to make it off by default easily
     use {
