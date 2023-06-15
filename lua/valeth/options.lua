@@ -10,4 +10,7 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
 
+-- yank to clipboard, requires wl-copy command or equivalent
+vim.opt.clipboard:append("unnamedplus")
+
 vim.g.mapleader = " "
