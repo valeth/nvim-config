@@ -78,6 +78,13 @@ local function spec(use)
         "LhKipp/nvim-nu"
     }
 
+    use {
+        "cameron-wags/rainbow_csv.nvim",
+        config = function()
+            require("rainbow_csv").setup()
+        end
+    }
+
 
     ---- LSP Stuff
 
