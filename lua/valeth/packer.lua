@@ -194,7 +194,7 @@ local function spec(use)
     }
 
     use {
-        "TimUntersberger/neogit",
+        "NeogitOrg/neogit",
         requires = {
             { "nvim-lua/plenary.nvim" },
         },
