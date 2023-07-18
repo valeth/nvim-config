@@ -10,6 +10,13 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
 
+vim.api.nvim_create_autocmd({"InsertEnter", "InsertLeave", "BufEnter"}, {
+    callback = function(args)
+        local entered_insert_mode = args.event == "InsertEnter"
+        vim.opt.cursorline = not entered_insert_mode
+    end
+})
+
 -- yank to clipboard, requires wl-copy command or equivalent
 vim.opt.clipboard:append("unnamedplus")
 
