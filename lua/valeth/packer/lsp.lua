@@ -60,4 +60,14 @@ lsp.format_on_save({
     }
 })
 
+lsp.configure("rust_analyzer", {
+    settings = {
+        ["rust-analyzer"] = {
+            rustfmt = {
+                extraArgs = { "+nightly" }
+            }
+        }
+    }
+})
+
 lsp.setup()
