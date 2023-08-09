@@ -106,6 +106,9 @@ local function spec(use)
             -- lsp manager
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
+            -- code folding
+            { "kevinhwang91/nvim-ufo" },
+            { "kevinhwang91/promise-async" },
         },
         config = function()
             require("valeth.packer.lsp")

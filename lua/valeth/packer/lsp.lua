@@ -1,4 +1,5 @@
 local lsp = require("lsp-zero")
+local ufo = require("ufo")
 
 lsp.preset("recommended")
 
@@ -40,6 +41,8 @@ lsp.set_sign_icons({
 lsp.on_attach(function(_, buffnr)
     local opts = { buffer = buffnr, remap = false }
 
+    ufo.attach(buffnr)
+
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -69,5 +72,14 @@ lsp.configure("rust_analyzer", {
         }
     }
 })
+
+vim.opt.foldcolumn = "0"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+
+ufo.setup {
+    close_fold_kinds = {"comment", "imports"},
+}
 
 lsp.setup()
