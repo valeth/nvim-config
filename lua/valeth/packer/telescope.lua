@@ -25,9 +25,7 @@ local telescope_builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<Leader>ff", telescope_builtin.find_files)
 vim.keymap.set("n", "<Leader>fb", telescope_builtin.buffers)
-vim.keymap.set("n", "<Leader>fgc", telescope_builtin.git_commits)
-vim.keymap.set("n", "<Leader>fgs", telescope_builtin.git_status)
-vim.keymap.set("n", "<Leader>fgd", telescope_builtin.git_stash)
+vim.keymap.set("n", "<Leader>fg", telescope_builtin.live_grep)
 
 local telescope_ext = require("telescope").extensions
 local harpoon_mark = require("harpoon.mark")
