@@ -90,7 +90,7 @@ local function spec(use)
 
     use {
         "VonHeikemen/lsp-zero.nvim",
-        branch = "v1.x",
+        branch = "v2.x",
         requires = {
             { "neovim/nvim-lspconfig" },
             -- completion
