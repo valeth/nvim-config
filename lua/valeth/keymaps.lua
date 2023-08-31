@@ -13,7 +13,7 @@ map({"n", "v", "i"}, "<C-s>", "<cmd>w<CR>")
 map("n", "s", "<NOP>")
 
 -- Exit insert mode by quickly pressing jk
-map("i", "jk", "<ESC>")
+map("i", "jk", "<ESC>l", { silent = true })
 
 -- This avoids accidentially recording a macro
 map({"n", "v"}, "<F1>", "q")
