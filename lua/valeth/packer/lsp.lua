@@ -54,9 +54,13 @@ ufo.setup {
 lsp_zero.setup()
 
 local cmp = require("cmp")
+local lspk = require("lspkind")
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 cmp.setup {
+    formatting = {
+        format = lspk.cmp_format({}),
+    },
     mapping = {
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
