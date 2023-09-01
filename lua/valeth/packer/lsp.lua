@@ -3,7 +3,8 @@ local ufo = require("ufo")
 local tsb = require("telescope.builtin")
 
 lsp_zero.ensure_installed {
-    "rust_analyzer"
+    "lua_ls",
+    "rust_analyzer",
 }
 
 lsp_zero.on_attach(function(_, buffnr)
