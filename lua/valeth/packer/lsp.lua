@@ -40,6 +40,9 @@ lsp_config.lua_ls.setup(lsp_zero.nvim_lua_ls())
 lsp_config.rust_analyzer.setup {
     settings = {
         ["rust-analyzer"] = {
+            cargo = {
+                features = "all"
+            },
             rustfmt = {
                 -- needs to use nightly channel to use unstable options
                 extraArgs = { "+nightly" }
