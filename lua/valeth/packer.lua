@@ -271,13 +271,15 @@ end
 
 
 -- Automatically reload packer configuration on write
-vim.cmd([[
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost packer.lua source <afile> | PackerCompile
-    augroup end
-]])
-
+vim.api.nvim_create_autocmd("BufWritePost", {
+    group = vim.api.nvim_create_augroup("PackerUserConfig", { clear = true }),
+    pattern = { "packer.lua", vim.fn.stdpath("config") .. "/lua/valeth/packer/*.lua" },
+    callback = function(_)
+        local source_file = vim.fn.stdpath("config") .. "/lua/valeth/packer.lua"
+        vim.cmd("source " .. source_file)
+        require("packer").compile()
+    end
+})
 
 return require("packer").startup {
     spec,
