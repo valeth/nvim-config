@@ -4,6 +4,7 @@ local spec = {
 
 spec.dependencies = {
     "kevinhwang91/promise-async",
+    "luukvbaal/statuscol.nvim",
 }
 
 spec.event = "LspAttach"
@@ -12,6 +13,10 @@ spec.config = function()
     local ufo = require("ufo")
     local autocmd = vim.api.nvim_create_autocmd
     local autogroup = vim.api.nvim_create_augroup
+
+    vim.opt.foldlevel = 99
+    vim.opt.foldlevelstart = 99
+    vim.opt.foldenable = true
 
     autocmd("LspAttach", {
         group = autogroup("LspUfo", {}),

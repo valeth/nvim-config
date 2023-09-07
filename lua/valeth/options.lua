@@ -10,13 +10,9 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 
-vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
-vim.opt.foldcolumn = "0"
 
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
+vim.opt.fillchars:append({ eob = "·" })
 
 vim.api.nvim_create_autocmd({"InsertEnter", "InsertLeave", "BufEnter"}, {
     callback = function(args)
