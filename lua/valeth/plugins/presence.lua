@@ -29,7 +29,7 @@ spec.config = function()
         })
     end
 
-    vim.api.nvim_create_user_command("DiscordToggle",
+    vim.api.nvim_create_user_command("PresenceToggle",
         function()
             if presence_disabled then
                 presence_disabled = false
