@@ -2,6 +2,8 @@ local spec = {
     "andweeb/presence.nvim",
 }
 
+spec.cmd = "PresenceToggle"
+
 spec.config = function()
     local presence = require("presence")
     local presence_disabled = true

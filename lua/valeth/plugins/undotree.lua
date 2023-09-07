@@ -2,6 +2,10 @@ local spec = {
     "jiaoshijie/undotree",
 }
 
+spec.keys = {
+    "<Leader>u",
+}
+
 spec.config = function()
     local undotree = require("undotree")
 

@@ -1,11 +1,12 @@
 local spec = {
     "kevinhwang91/nvim-ufo",
-    event = "LspAttach",
 }
 
 spec.dependencies = {
     "kevinhwang91/promise-async",
 }
+
+spec.event = "LspAttach"
 
 spec.config = function()
     local ufo = require("ufo")

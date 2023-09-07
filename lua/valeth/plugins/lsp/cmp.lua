@@ -1,6 +1,5 @@
 local spec = {
     "hrsh7th/nvim-cmp",
-    event = "LspAttach",
 }
 
 spec.dependencies = {
@@ -12,6 +11,8 @@ spec.dependencies = {
     "L3MON4D3/LuaSnip",
     "rafamadriz/friendly-snippets",
 }
+
+spec.event = "LspAttach"
 
 spec.config = function()
     local cmp = require("cmp")

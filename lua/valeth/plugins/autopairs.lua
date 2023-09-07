@@ -2,6 +2,10 @@ local spec = {
     "windwp/nvim-autopairs",
 }
 
+spec.dependencies = {
+    "hrsh7th/nvim-cmp",
+}
+
 spec.config = function()
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     local cmp = require("cmp")

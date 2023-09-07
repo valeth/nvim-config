@@ -6,6 +6,11 @@ spec.dependencies = {
     "nvim-lua/plenary.nvim",
 }
 
+spec.keys = {
+    "<Leader>vs",
+    "<Leader>vc",
+}
+
 spec.config = function()
     local neogit = require("neogit")
 

@@ -6,11 +6,14 @@ spec.dependencies = {
     "nvim-tree/nvim-web-devicons"
 }
 
+spec.keys = {
+    { "<Leader>ft", "<cmd>NvimTreeToggle<CR>", mode = "n" },
+}
+
 spec.config = function()
     local nvim_tree = require("nvim-tree")
     local nvim_tree_api = require("nvim-tree.api")
 
-    vim.keymap.set("n", "<Leader>ft", nvim_tree_api.tree.open)
 
     local function kmap_opts(bufnr, desc)
         return {
