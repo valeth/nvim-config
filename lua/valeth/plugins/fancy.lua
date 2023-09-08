@@ -1,6 +1,7 @@
 return {
     {
-        "CantoroMC/ayu-nvim",
+        "valeth/ayu-nvim",
+        branch = "fold-column-fg",
         priority = 1000, -- make sure this is loaded first
         config = function()
             vim.g.ayu_mirage = true

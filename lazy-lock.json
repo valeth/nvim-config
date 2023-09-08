@@ -1,7 +1,7 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "ea7d7ea510c641c4f15042becd27f35b3e5b3c2b" },
-  "ayu-nvim": { "branch": "main", "commit": "4418a0c07d45026b05cfd948fd11644d3adb8ac6" },
+  "ayu-nvim": { "branch": "fold-column-fg", "commit": "552034625fedac4a5487459618c80bc9e233f6f4" },
   "cloak.nvim": { "branch": "main", "commit": "ff5e746e787de14675396beb642bf5010b8bc96d" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
