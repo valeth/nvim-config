@@ -1,6 +1,10 @@
 return {
     "wakatime/vim-wakatime",
-    cond = function()
-        return not (os.getenv("WAKATIME_HOME") == nil)
+    event = function()
+        if os.getenv("WAKATIME_HOME") then
+            return { "VimEnter" }
+        else
+            return {}
+        end
     end
 }
