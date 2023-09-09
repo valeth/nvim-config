@@ -51,6 +51,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    { import = "valeth.plugins" },
-    { import = "valeth.plugins.lsp" },
+    ui = {
+        border = "rounded",
+    },
+    spec = {
+        { import = "valeth.plugins" },
+        { import = "valeth.plugins.lsp" },
+    }
 })
