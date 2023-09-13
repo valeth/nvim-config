@@ -38,6 +38,7 @@
   "resession.nvim": { "branch": "master", "commit": "0be4f5401f6f843b320c0ba9035fe682b6b89d0d" },
   "statuscol.nvim": { "branch": "main", "commit": "0944234914438695050eec6f83b4669864680c1a" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "9a9ca52206c2f39d2145c8c5458ddd2f6ef6e706" },
+  "trouble.nvim": { "branch": "main", "commit": "3f85d8ed30e97ceeddbbcf80224245d347053711" },
   "undotree": { "branch": "main", "commit": "2685ce282702ab0b79c65916f352db2265b245dd" },
   "vim-wakatime": { "branch": "master", "commit": "0d2efa2daff34b27b0d227d4c3b136811c93db93" }
 }
