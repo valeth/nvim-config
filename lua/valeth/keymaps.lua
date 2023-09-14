@@ -3,14 +3,16 @@ local map = vim.keymap.set
 map("n", "<Leader><CR>", "<cmd>noh<CR>")
 map("n", "U", "<cmd>redo<CR>")
 map("n", "Y", "y$")
+map({"n", "v", "i"}, "<C-s>", "<cmd>w<CR>")
+map("n", "s", "<NOP>")
+
+-- Move up and down visual lines for the few times I need wrapping
 map("n", "j", "gj")
 map("n", "k", "gk")
 
+-- More sensible start and end of line
 map({"n", "v"}, "H", "^")
 map({"n", "v"}, "L", "$")
-
-map({"n", "v", "i"}, "<C-s>", "<cmd>w<CR>")
-map("n", "s", "<NOP>")
 
 -- Exit insert mode by quickly pressing jk
 map("i", "jk", "<ESC>l", { silent = true })

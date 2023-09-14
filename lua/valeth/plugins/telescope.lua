@@ -9,6 +9,13 @@ spec.dependencies = {
     "ThePrimeagen/harpoon",
 }
 
+spec.keys = {
+    "<Leader>ff",
+    "<Leader>fb",
+    "<Leader>fg",
+    "<Leader>fh",
+}
+
 spec.config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
