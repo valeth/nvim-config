@@ -14,8 +14,6 @@ spec.config = function()
     local autocmd = vim.api.nvim_create_autocmd
     local autogroup = vim.api.nvim_create_augroup
 
-    vim.opt.foldlevel = 99
-    vim.opt.foldlevelstart = 99
     vim.opt.foldenable = true
 
     autocmd("LspAttach", {

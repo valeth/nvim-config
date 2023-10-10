@@ -12,6 +12,9 @@ vim.opt.scrolloff = 8
 
 vim.opt.colorcolumn = "100"
 
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
 vim.opt.fillchars:append({ eob = "·" })
 
 vim.api.nvim_create_autocmd({"InsertEnter", "InsertLeave", "BufEnter"}, {
