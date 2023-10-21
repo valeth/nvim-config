@@ -4,6 +4,7 @@ local spec = {
 
 spec.dependencies = {
     "nvim-telescope/telescope.nvim",
+    "folke/neodev.nvim",
 }
 
 spec.config = function()
@@ -30,6 +31,18 @@ spec.config = function()
             end)
         end
     })
+
+    require("neodev").setup()
+
+    lsp_config.lua_ls.setup {
+        settings = {
+            Lua = {
+                completion = {
+                    callSnippet = "Replace"
+                }
+            }
+        }
+    }
 
     lsp_config.rust_analyzer.setup {
         settings = {
