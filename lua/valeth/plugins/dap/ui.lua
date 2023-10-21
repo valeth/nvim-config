@@ -12,6 +12,9 @@ spec.keys = {
     { "<Leader>dbr", "<cmd>DapToggleBreakpoint<CR>" },
     { "<Leader>dso", "<cmd>DapStepOver<CR>" },
     { "<Leader>dq", "<cmd>DapTerminate<CR>" },
+    { "<Leader>dt", function()
+        require("dapui").toggle()
+    end}
 }
 
 spec.config = function()
