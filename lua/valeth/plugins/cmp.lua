@@ -21,6 +21,11 @@ spec.config = function()
                 mode = "symbol_text",
             })
         },
+        snippet = {
+            expand = function(args)
+                require("luasnip").lsp_expand(args.body)
+            end
+        },
         window = {
             completion = cmp.config.window.bordered()
         },
@@ -32,9 +37,10 @@ spec.config = function()
         },
         sources = cmp.config.sources({
             { name = "nvim_lsp" },
-            { name = "path"},
+            { name = "path" },
         })
     })
 end
+
 
 return spec
