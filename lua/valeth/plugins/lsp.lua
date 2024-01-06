@@ -10,16 +10,6 @@ spec.dependencies = {
 }
 
 spec.config = function()
-    -- Give me fancy diagnostic signs
-    vim.fn.sign_define("DiagnosticSignError ", { text = "✘" })
-    vim.fn.sign_define("DiagnosticSignWarn", { text = "▲" })
-    vim.fn.sign_define("DiagnosticSignInfo ", { text = "»" })
-    vim.fn.sign_define("DiagnosticSignHint", { text = "⚑" })
-
-    vim.diagnostic.config({
-        virtual_text = false,
-    })
-
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
 

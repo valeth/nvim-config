@@ -4,12 +4,18 @@ local spec = {
 }
 
 spec.dependencies = {
-    { "lewis6991/gitsigns.nvim", opts = {}},
+    { "lewis6991/gitsigns.nvim", opts = {} },
 }
 
 spec.config = function()
     local statuscol = require("statuscol")
     local builtin = require("statuscol.builtin")
+
+    -- Give me fancy diagnostic signs
+    vim.fn.sign_define("DiagnosticSignError", { text = "✘" })
+    vim.fn.sign_define("DiagnosticSignWarn", { text = "▲" })
+    vim.fn.sign_define("DiagnosticSignInfo ", { text = "»" })
+    vim.fn.sign_define("DiagnosticSignHint", { text = "⚑" })
 
     vim.opt.signcolumn = "yes"
     vim.opt.foldcolumn = "1"
