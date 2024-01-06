@@ -7,13 +7,12 @@ spec.dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "nvim-telescope/telescope.nvim",
     "folke/neodev.nvim",
-    "mhartington/formatter.nvim",
 }
 
 spec.config = function()
     -- Give me fancy diagnostic signs
     vim.fn.sign_define("DiagnosticSignError ", { text = "✘" })
-    vim.fn.sign_define("DiagnosticSignWarn" , { text = "▲" })
+    vim.fn.sign_define("DiagnosticSignWarn", { text = "▲" })
     vim.fn.sign_define("DiagnosticSignInfo ", { text = "»" })
     vim.fn.sign_define("DiagnosticSignHint", { text = "⚑" })
 
@@ -59,10 +58,6 @@ spec.config = function()
             vim.keymap.set("n", "<Leader>ci", vim.diagnostic.open_float, opts)
             vim.keymap.set("n", "<Leader>re", vim.lsp.buf.rename, opts)
             vim.keymap.set({ "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, opts)
-
-            vim.keymap.set("n", "<Leader>fmt", function()
-                vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
-            end)
         end
     })
 
