@@ -35,9 +35,4 @@ return {
             vim.notify = notify
         end
     },
-
-    {
-        "lewis6991/gitsigns.nvim",
-        opts = {},
-    },
 }

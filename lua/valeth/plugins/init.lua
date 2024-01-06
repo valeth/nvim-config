@@ -10,5 +10,15 @@ return {
         opts = {},
     },
 
-    "nvim-lua/plenary.nvim",
+    {
+        "stevearc/oil.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        },
+        opts = {},
+        cmd = { "Oil" },
+        keys = {
+            { "<Leader>ft", "<cmd>Oil<CR>", mode = "n" }
+        },
+    },
 }

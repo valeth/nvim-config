@@ -3,6 +3,10 @@ local spec = {
     lazy = true,
 }
 
+spec.dependencies = {
+    "lewis6991/gitsigns.nvim",
+}
+
 spec.config = function()
     local statuscol = require("statuscol")
     local builtin = require("statuscol.builtin")

@@ -4,23 +4,9 @@ local spec = {
 
 spec.dependencies = {
     "nvim-tree/nvim-web-devicons",
-    "stevearc/overseer.nvim",
 }
 
 spec.config = function()
-    local overseer = require("overseer")
-
-    local task_status = {
-        "overseer",
-        colored = true,
-        symbols = {
-            [overseer.STATUS.FAILURE] = "✗ ",
-            [overseer.STATUS.CANCELED] = "o ",
-            [overseer.STATUS.SUCCESS] = "✓ ",
-            [overseer.STATUS.RUNNING] = "⟳ ",
-        },
-    }
-
     require("lualine").setup({
         sections = {
             lualine_b = {
@@ -32,7 +18,6 @@ spec.config = function()
                 },
             },
             lualine_x = {
-                task_status,
                 "encoding",
                 { "fileformat", icons_enabled = false },
                 "filetype"
