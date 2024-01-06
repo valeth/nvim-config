@@ -4,7 +4,7 @@ local spec = {
 }
 
 spec.dependencies = {
-    "lewis6991/gitsigns.nvim",
+    { "lewis6991/gitsigns.nvim", opts = {}},
 }
 
 spec.config = function()
