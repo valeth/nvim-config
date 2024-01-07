@@ -12,10 +12,10 @@ spec.config = function()
     local builtin = require("statuscol.builtin")
 
     -- Give me fancy diagnostic signs
-    vim.fn.sign_define("DiagnosticSignError", { text = "✘" })
-    vim.fn.sign_define("DiagnosticSignWarn", { text = "▲" })
-    vim.fn.sign_define("DiagnosticSignInfo ", { text = "»" })
-    vim.fn.sign_define("DiagnosticSignHint", { text = "⚑" })
+    for level, text in pairs({ Error = "✘", Warn = "▲", Info = "»", Hint = "⚑" }) do
+        local name = "DiagnosticSign" .. level
+        vim.fn.sign_define(name, { text = text, texthl = name })
+    end
 
     vim.opt.signcolumn = "yes"
     vim.opt.foldcolumn = "1"
