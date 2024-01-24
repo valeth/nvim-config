@@ -1,6 +1,6 @@
 local spec = {
     "saecki/crates.nvim",
-    tag = "v0.4.0",
+    -- tag = "v0.4.0", -- non-main branches and tags lock up UI
 }
 
 spec.dependencies = {
