@@ -1,6 +1,6 @@
 local spec = {
     "saecki/crates.nvim",
-    tag = "v0.3.0",
+    tag = "v0.4.0",
 }
 
 spec.dependencies = {
