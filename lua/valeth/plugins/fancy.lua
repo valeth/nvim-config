@@ -52,6 +52,9 @@ return {
         "folke/noice.nvim",
         event = "VeryLazy",
         opts = {},
+        keys = {
+            { "<leader>nd", "<cmd>NoiceDismiss<CR>" },
+        },
         dependencies = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
