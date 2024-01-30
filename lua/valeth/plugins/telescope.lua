@@ -18,7 +18,21 @@ spec.keys = {
 
 spec.config = function()
     local telescope = require("telescope")
+    local builtin = require("telescope.builtin")
     local actions = require("telescope.actions")
+
+    local cycle_picker = function(bufnr)
+        local state = require("telescope.actions.state")
+        local current_picker = state.get_current_picker(bufnr)
+
+        local title = current_picker.prompt_title
+
+        if title == "Buffers" then
+            builtin.find_files()
+        elseif title == "Find Files" then
+            builtin.buffers()
+        end
+    end
 
     telescope.load_extension("harpoon")
 
@@ -31,12 +45,20 @@ spec.config = function()
                 mappings = {
                     i = {
                         ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
+                        ["<C-f>"] = cycle_picker,
                     },
                     n = {
                         ["dd"] = actions.delete_buffer,
                     }
                 }
             },
+            find_files = {
+                mappings = {
+                    i = {
+                        ["<C-f>"] = cycle_picker,
+                    }
+                }
+            }
         }
     }
 
