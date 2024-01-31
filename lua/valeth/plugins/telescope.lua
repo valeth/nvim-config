@@ -6,14 +6,12 @@ local spec = {
 spec.dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "ThePrimeagen/harpoon",
 }
 
 spec.keys = {
-    "<Leader>ff",
-    "<Leader>fb",
-    "<Leader>fg",
-    "<Leader>fh",
+    { "<Leader>ff", "<cmd>Telescope find_files<CR>" },
+    { "<Leader>fb", "<cmd>Telescope buffers<CR>" },
+    { "<Leader>fg", "<cmd>Telescope live_grep<CR>" },
 }
 
 spec.config = function()
@@ -45,9 +43,7 @@ spec.config = function()
         end
     end
 
-    telescope.load_extension("harpoon")
-
-    telescope.setup {
+    telescope.setup({
         defaults = {
             initial_mode = "insert"
         },
@@ -71,22 +67,7 @@ spec.config = function()
                 }
             }
         }
-    }
-
-    local telescope_builtin = require("telescope.builtin")
-
-    vim.keymap.set("n", "<Leader>ff", telescope_builtin.find_files)
-    vim.keymap.set("n", "<Leader>fb", telescope_builtin.buffers)
-    vim.keymap.set("n", "<Leader>fg", telescope_builtin.live_grep)
-
-    local telescope_ext = require("telescope").extensions
-    local harpoon_mark = require("harpoon.mark")
-    local harpoon_ui = require("harpoon.ui")
-
-    vim.keymap.set("n", "<Leader>fh", telescope_ext.harpoon.marks)
-    vim.keymap.set("n", "<Leader>am", harpoon_mark.add_file)
-    vim.keymap.set("n", "<Leader>gn", harpoon_ui.nav_next)
-    vim.keymap.set("n", "<Leader>gp", harpoon_ui.nav_prev)
+    })
 end
 
 return spec
