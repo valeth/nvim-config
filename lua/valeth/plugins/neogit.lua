@@ -25,7 +25,7 @@ spec.config = function()
     vim.keymap.set("n", "<Leader>vs", git_status)
     vim.keymap.set("n", "<Leader>vc", git_commit)
 
-    neogit.setup()
+    neogit.setup({})
 end
 
 return spec

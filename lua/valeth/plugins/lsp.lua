@@ -78,6 +78,10 @@ spec.config = function()
             }
         }
     })
+
+    lsp_config.sqlls.setup({})
+
+    lsp_config.nil_ls.setup({})
 end
 
 return spec
