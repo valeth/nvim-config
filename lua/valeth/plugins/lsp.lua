@@ -65,17 +65,22 @@ spec.config = function()
         }
     })
 
+    local rust_analyzer_settings = {
+        cargo = {
+            features = "all"
+        },
+    }
+
+    -- Don't have rustup available if using nix shell
+    if vim.fn.executable("rustup") == 1 then
+        rust_analyzer_settings = vim.tbl_extend("keep", rust_analyzer_settings, {
+            rustfmt = { extraArgs = { "+nightly" } }
+        })
+    end
+
     lsp_config.rust_analyzer.setup({
         settings = {
-            ["rust-analyzer"] = {
-                cargo = {
-                    features = "all"
-                },
-                rustfmt = {
-                    -- needs to use nightly channel to use unstable options
-                    extraArgs = { "+nightly" }
-                }
-            }
+            ["rust-analyzer"] = rust_analyzer_settings
         }
     })
 
