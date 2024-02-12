@@ -47,30 +47,4 @@ return {
             "nvim-treesitter/nvim-treesitter",
         }
     },
-
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        opts = {},
-        keys = {
-            { "<leader>nd", "<cmd>NoiceDismiss<CR>" },
-        },
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        }
-    },
-
-    {
-        "rcarriga/nvim-notify",
-        config = function()
-            local notify = require("notify")
-
-            notify.setup({
-                top_down = false,
-            })
-
-            vim.notify = notify
-        end
-    },
 }
