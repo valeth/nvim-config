@@ -5,7 +5,15 @@ local spec = {
 
 spec.event = "VeryLazy"
 
-spec.opts = {}
+spec.opts = {
+    lsp = {
+        documentation = {
+            opts = {
+                border = { style = "rounded" }
+            }
+        }
+    }
+}
 
 spec.keys = {
     { "<leader>nd", "<cmd>NoiceDismiss<CR>" },
