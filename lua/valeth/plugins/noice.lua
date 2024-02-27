@@ -6,12 +6,9 @@ local spec = {
 spec.event = "VeryLazy"
 
 spec.opts = {
-    lsp = {
-        documentation = {
-            opts = {
-                border = { style = "rounded" }
-            }
-        }
+    presets = {
+        command_palette = true,
+        lsp_doc_border = true,
     }
 }
 
