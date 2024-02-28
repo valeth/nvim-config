@@ -19,7 +19,9 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim"
         },
-        opts = {},
+        opts = {
+            columns = { "icon", "permissions" },
+        },
         cmd = { "Oil" },
         keys = {
             { "<Leader>ft", "<cmd>Oil<CR>", mode = "n" }
