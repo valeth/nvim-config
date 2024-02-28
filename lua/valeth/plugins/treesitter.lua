@@ -10,7 +10,15 @@ spec.dependencies = {
 
 spec.config = function()
     require("nvim-treesitter.configs").setup {
-        ensure_installed = { "rust", "lua", "javascript", "typescript" },
+        ensure_installed = {
+            "rust",
+            "lua",
+            "javascript",
+            "typescript",
+            "regex",
+            "markdown",
+            "markdown_inline"
+        },
 
         auto_install = true,
 
