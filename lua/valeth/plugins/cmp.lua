@@ -30,7 +30,7 @@ spec.config = function()
             completion = cmp.config.window.bordered()
         },
         mapping = {
-            ["<CR>"] = cmp.mapping.confirm({ select = true }),
+            ["<C-y>"] = cmp.mapping.confirm({ select = true }),
             ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
             ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
             ["<C-Space>"] = cmp.mapping.complete(),
