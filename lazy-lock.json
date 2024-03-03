@@ -41,5 +41,6 @@
   "statuscol.nvim": { "branch": "main", "commit": "d954893262a57a92e46edd87de67e2b3fe72305e" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" },
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },
-  "vim-wakatime": { "branch": "master", "commit": "285c2e4e48fb0c63ced233c00fb10a2edb3b6c94" }
+  "vim-wakatime": { "branch": "master", "commit": "285c2e4e48fb0c63ced233c00fb10a2edb3b6c94" },
+  "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" }
 }
