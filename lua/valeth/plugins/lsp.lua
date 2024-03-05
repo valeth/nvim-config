@@ -7,9 +7,21 @@ spec.dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "nvim-telescope/telescope.nvim",
     "folke/neodev.nvim",
+    { "folke/neoconf.nvim", tag = "v1.2.2" },
 }
 
 spec.config = function()
+    local neoconf = require("neoconf")
+
+    neoconf.setup({
+        -- ignore foreign imports
+        import = {
+            vscode = false,
+            coc = false,
+            nlsp = false,
+        }
+    })
+
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
 
