@@ -9,7 +9,7 @@ spec.dependencies = {
 }
 
 spec.opts = {
-    disabled_filetypes = { "oil", "lazy" },
+    disabled_filetypes = { "oil", "lazy", "NeogitStatus" },
 }
 
 return spec
