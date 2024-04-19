@@ -24,7 +24,9 @@ spec.config = function()
     })
 
     ufo.setup({
-        close_fold_kinds = {"comment", "imports"},
+        close_fold_kinds_for_ft = {
+            default = { "comment", "imports" },
+        },
     })
 end
 
