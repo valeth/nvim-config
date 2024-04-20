@@ -25,7 +25,7 @@ spec.keys = {
 
 spec.dependencies = {
     "MunifTanjim/nui.nvim",
-    { "rcarriga/nvim-notify", opts = { top_down = false } },
+    "rcarriga/nvim-notify",
 }
 
 return spec
