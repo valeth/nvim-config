@@ -13,18 +13,4 @@ return {
         "stevearc/dressing.nvim",
         opts = {},
     },
-
-    {
-        "stevearc/oil.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim"
-        },
-        opts = {
-            columns = { "icon", "permissions" },
-        },
-        cmd = { "Oil" },
-        keys = {
-            { "<Leader>ft", "<cmd>Oil<CR>", mode = "n" }
-        },
-    },
 }
