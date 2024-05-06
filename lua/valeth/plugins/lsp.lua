@@ -10,6 +10,41 @@ spec.dependencies = {
     { "folke/neoconf.nvim", tag = "v1.2.2" },
 }
 
+local function rust_analyzer_setup(lsp_config)
+    local rust_analyzer_settings = {
+        cargo = {
+            features = "all"
+        },
+    }
+
+    -- Don't have rustup available if using nix shell
+    if vim.fn.executable("rustup") == 1 then
+        rust_analyzer_settings = vim.tbl_extend("keep", rust_analyzer_settings, {
+            rustfmt = { extraArgs = { "+nightly" } }
+        })
+    end
+
+    lsp_config.rust_analyzer.setup({
+        settings = {
+            ["rust-analyzer"] = rust_analyzer_settings
+        }
+    })
+end
+
+local function lua_ls_setup(lsp_config)
+    lsp_config.lua_ls.setup({
+        capabilities = {
+            textDocument = {
+                completion = {
+                    completionItem = {
+                        snippetSupport = false
+                    }
+                }
+            }
+        }
+    })
+end
+
 spec.config = function()
     local neoconf = require("neoconf")
 
@@ -65,36 +100,9 @@ spec.config = function()
 
     require("neodev").setup()
 
-    lsp_config.lua_ls.setup({
-        capabilities = {
-            textDocument = {
-                completion = {
-                    completionItem = {
-                        snippetSupport = false
-                    }
-                }
-            }
-        }
-    })
+    lua_ls_setup(lsp_config)
 
-    local rust_analyzer_settings = {
-        cargo = {
-            features = "all"
-        },
-    }
-
-    -- Don't have rustup available if using nix shell
-    if vim.fn.executable("rustup") == 1 then
-        rust_analyzer_settings = vim.tbl_extend("keep", rust_analyzer_settings, {
-            rustfmt = { extraArgs = { "+nightly" } }
-        })
-    end
-
-    lsp_config.rust_analyzer.setup({
-        settings = {
-            ["rust-analyzer"] = rust_analyzer_settings
-        }
-    })
+    rust_analyzer_setup(lsp_config)
 
     lsp_config.sqlls.setup({})
 
