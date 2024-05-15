@@ -51,6 +51,9 @@ spec.dependencies = {
 }
 
 spec.opts = {
+    view_options = {
+        show_hidden = true,
+    },
     columns = { "icon", "permissions" },
     keymaps = {
         ["J"] = function()
