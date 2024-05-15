@@ -65,6 +65,9 @@ spec.opts = {
     }
 }
 
+-- Will not replace netrw if we lazy load sadly
+spec.lazy = false
+
 spec.cmd = { "Oil" }
 
 spec.keys = {
