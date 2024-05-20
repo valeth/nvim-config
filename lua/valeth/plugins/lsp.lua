@@ -45,6 +45,13 @@ local function lua_ls_setup(lsp_config)
     })
 end
 
+local function toggle_inlay_hints()
+    local to_enable = not vim.lsp.inlay_hint.is_enabled()
+    vim.lsp.inlay_hint.enable(to_enable)
+    local status = to_enable and "enabled" or "disabled"
+    vim.notify("Inlay hints " .. status, vim.log.levels.INFO)
+end
+
 spec.config = function()
     local neoconf = require("neoconf")
 
@@ -95,6 +102,7 @@ spec.config = function()
             vim.keymap.set("n", "<Leader>ci", vim.diagnostic.open_float, opts)
             vim.keymap.set("n", "<Leader>re", vim.lsp.buf.rename, opts)
             vim.keymap.set({ "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, opts)
+            vim.keymap.set("n", "<C-i>", toggle_inlay_hints, opts)
         end
     })
 
