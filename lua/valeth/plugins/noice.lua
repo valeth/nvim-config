@@ -1,6 +1,5 @@
 local spec = {
     "folke/noice.nvim",
-    tag = "v2.0.0",
 }
 
 spec.event = "VeryLazy"

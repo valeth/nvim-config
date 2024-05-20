@@ -7,7 +7,7 @@ spec.dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "nvim-telescope/telescope.nvim",
     "folke/neodev.nvim",
-    { "folke/neoconf.nvim", tag = "v1.2.2" },
+    "folke/neoconf.nvim",
 }
 
 local function rust_analyzer_setup(lsp_config)

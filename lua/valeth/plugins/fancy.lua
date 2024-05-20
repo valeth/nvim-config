@@ -38,7 +38,6 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
-        tag = "v3.2.7",
         opts = {
             scope = {
                 show_start = false,
