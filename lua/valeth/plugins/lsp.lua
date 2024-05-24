@@ -46,6 +46,8 @@ local function lua_ls_setup(lsp_config)
 end
 
 local function toggle_inlay_hints()
+    -- the docs suggest this, so this should be fine
+    ---@diagnostic disable-next-line: missing-parameter
     local to_enable = not vim.lsp.inlay_hint.is_enabled()
     vim.lsp.inlay_hint.enable(to_enable)
     local status = to_enable and "enabled" or "disabled"

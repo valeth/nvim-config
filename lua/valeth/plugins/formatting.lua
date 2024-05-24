@@ -19,7 +19,7 @@ end
 
 local function format_file()
     local bufnr = vim.api.nvim_get_current_buf()
-    local lsp_client = vim.lsp.get_active_clients({ bufnr = bufnr })
+    local lsp_client = vim.lsp.get_clients({ bufnr = bufnr })
 
     if #lsp_client ~= 0 then
         vim.lsp.buf.format({ async = false, timeout_ms = 5000 })

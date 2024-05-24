@@ -9,7 +9,7 @@ spec.dependencies = {
 }
 
 spec.config = function()
-    require("crates").setup()
+    require("crates").setup({})
 
     local cmp = require("cmp")
 

@@ -8,7 +8,7 @@ spec.dependencies = {
 }
 
 spec.config = function()
-    require("nvim-treesitter.configs").setup {
+    require("nvim-treesitter.configs").setup({
         ensure_installed = {
             "rust",
             "lua",
@@ -27,7 +27,7 @@ spec.config = function()
         },
 
         endwise = { enable = true }
-    }
+    })
 
     require("treesitter-context").setup()
 

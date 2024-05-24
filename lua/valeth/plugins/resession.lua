@@ -36,7 +36,7 @@ spec.config = function()
         end
     })
 
-    resession.setup()
+    resession.setup({})
 end
 
 return spec
