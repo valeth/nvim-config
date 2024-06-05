@@ -20,9 +20,6 @@ vim.opt.foldlevelstart = 99
 
 vim.opt.fillchars:append({ eob = "·" })
 
--- yank to clipboard, requires wl-copy command or equivalent
-vim.opt.clipboard:append("unnamedplus")
-
 vim.g.mapleader = " "
 
 
@@ -37,7 +34,7 @@ aucmd("TextYankPost", {
 })
 
 -- Hide cursor line while in insert mode
-aucmd({"InsertEnter", "InsertLeave", "BufEnter"}, {
+aucmd({ "InsertEnter", "InsertLeave", "BufEnter" }, {
     group = "valeth",
     callback = function(args)
         local entered_insert_mode = args.event == "InsertEnter"
