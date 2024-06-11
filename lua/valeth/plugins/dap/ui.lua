@@ -8,13 +8,17 @@ spec.dependencies = {
 }
 
 spec.keys = {
-    { "<Leader>dbg", "<cmd>DapContinue<CR>"},
-    { "<Leader>dbr", "<cmd>DapToggleBreakpoint<CR>" },
-    { "<Leader>dso", "<cmd>DapStepOver<CR>" },
-    { "<Leader>dq", "<cmd>DapTerminate<CR>" },
-    { "<Leader>dt", function()
-        require("dapui").toggle()
-    end}
+    { "<Leader>dbg", "<cmd>DapContinue<CR>",         desc = "Continue DAP session" },
+    { "<Leader>dbr", "<cmd>DapToggleBreakpoint<CR>", desc = "Toggle breakpoint" },
+    { "<Leader>dso", "<cmd>DapStepOver<CR>",         desc = "Step over" },
+    { "<Leader>dq",  "<cmd>DapTerminate<CR>",        desc = "Terminate DAP ssession" },
+    {
+        "<Leader>dt",
+        function()
+            require("dapui").toggle()
+        end,
+        desc = "Toggle DAP UI"
+    }
 }
 
 spec.config = function()

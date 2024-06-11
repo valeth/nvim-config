@@ -54,6 +54,21 @@ local function toggle_inlay_hints()
     vim.notify("Inlay hints " .. status, vim.log.levels.INFO)
 end
 
+---@param buf buffer
+---@param mode string | string[]
+---@param rhs string
+---@param lhs string | function
+---@param desc? string
+local function bufmap(buf, mode, rhs, lhs, desc)
+    local opts = {
+        buffer = buf,
+        remap = false,
+        desc = desc
+    }
+
+    vim.keymap.set(mode, rhs, lhs, opts)
+end
+
 spec.config = function()
     local neoconf = require("neoconf")
 
@@ -95,16 +110,15 @@ spec.config = function()
         group = autogroup("LspAttachConfig", {}),
         callback = function(event)
             local tsb = require("telescope.builtin")
-            local opts = { buffer = event.buf, remap = false }
-
-            vim.keymap.set("n", "gd", tsb.lsp_definitions, opts)
-            vim.keymap.set("n", "gr", tsb.lsp_references, opts)
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-            vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
-            vim.keymap.set("n", "<Leader>ci", vim.diagnostic.open_float, opts)
-            vim.keymap.set("n", "<Leader>re", vim.lsp.buf.rename, opts)
-            vim.keymap.set({ "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, opts)
-            vim.keymap.set("n", "<C-i>", toggle_inlay_hints, opts)
+            local buf = event.buf
+            bufmap(buf, "n", "gd", tsb.lsp_definitions, "Go to definition")
+            bufmap(buf, "n", "gr", tsb.lsp_references, "Go to reference")
+            bufmap(buf, "n", "K", vim.lsp.buf.hover, "Show documentation in hover")
+            bufmap(buf, "n", "<Leader>ca", vim.lsp.buf.code_action, "Run a code action")
+            bufmap(buf, "n", "<Leader>ci", vim.diagnostic.open_float, "Show diagnostics")
+            bufmap(buf, "n", "<Leader>re", vim.lsp.buf.rename, "Rename item under cursor")
+            bufmap(buf, { "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, "Open signature help")
+            bufmap(buf, "n", "<C-i>", toggle_inlay_hints, "Toggle LSP inlay hints")
         end
     })
 

@@ -19,7 +19,7 @@ spec.opts = {
 }
 
 spec.keys = {
-    { "<leader>nd", "<cmd>NoiceDismiss<CR>" },
+    { "<leader>nd", "<cmd>NoiceDismiss<CR>", desc = "Dismiss all noice messages"},
 }
 
 spec.dependencies = {

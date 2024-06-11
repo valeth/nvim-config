@@ -28,7 +28,7 @@ local function format_file()
     end
 end
 
-vim.keymap.set("n", "<Leader>fmt", format_file)
+vim.keymap.set("n", "<Leader>fmt", format_file, { desc = "Format the current buffer" })
 
 -- Format on save
 autocmd("BufWritePost", {

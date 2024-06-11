@@ -9,9 +9,9 @@ spec.dependencies = {
 }
 
 spec.keys = {
-    { "<Leader>ff", "<cmd>Telescope find_files<CR>" },
-    { "<Leader>fb", "<cmd>Telescope buffers<CR>" },
-    { "<Leader>fg", "<cmd>Telescope live_grep<CR>" },
+    { "<Leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find in files" },
+    { "<Leader>fb", "<cmd>Telescope buffers<CR>",    desc = "Find in buffers" },
+    { "<Leader>fg", "<cmd>Telescope live_grep<CR>",  desc = "Find by grepping" },
 }
 
 spec.config = function()

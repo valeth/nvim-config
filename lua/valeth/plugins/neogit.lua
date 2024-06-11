@@ -7,8 +7,8 @@ spec.dependencies = {
 }
 
 spec.keys = {
-    { "<Leader>vs", "<cmd>Neogit<CR>" },
-    { "<Leader>vc", "<cmd>Neogit commit<CR>" },
+    { "<Leader>vs", "<cmd>Neogit<CR>", desc = "Open NeoGit" },
+    { "<Leader>vc", "<cmd>Neogit commit<CR>", desc = "Open NeoGit commit" },
 }
 
 spec.config = true

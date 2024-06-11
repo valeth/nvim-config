@@ -1,33 +1,32 @@
-local map = vim.keymap.set
+local maps = {
+    { "n",               "<Leader><CR>", "<cmd>noh<CR>",        { desc = "Clear search highlighting" } },
+    { "n",               "U",            "<cmd>redo<CR>",       { desc = "Redo the last action" } },
+    { "n",               "Y",            "y$",                  { desc = "Yank until the end of the line" } },
+    { { "n", "v", "i" }, "<C-s>",        "<cmd>w<CR>",          { desc = "Write current file" } },
+    { "n",               "s",            "<NOP>" },
 
-map("n", "<Leader><CR>", "<cmd>noh<CR>")
-map("n", "U", "<cmd>redo<CR>")
-map("n", "Y", "y$")
-map({ "n", "v", "i" }, "<C-s>", "<cmd>w<CR>")
-map("n", "s", "<NOP>")
+    -- Yank to clipboard
+    { { "n", "v" },      "<Leader>y",    [["+y]],               { desc = "Yank to clipboard" } },
+    { { "n", "v" },      "<Leader>Y",    [["+Y]],               { desc = "Yank line to clipboard" } },
 
--- Yank to clipboard
-map({ "n", "v" }, "<Leader>y", [["+y]])
-map({ "n", "v" }, "<Leader>Y", [["+Y]])
+    -- Move up and down visual lines for the few times I need wrapping
+    { "n",               "j",            "gj" },
+    { "n",               "k",            "gk" },
 
--- Move up and down visual lines for the few times I need wrapping
-map("n", "j", "gj")
-map("n", "k", "gk")
+    { { "n", "v" },      "H",            "^",                   { desc = "Move to start of line" } },
+    { { "n", "v" },      "L",            "$",                   { desc = "Move to end of line" } },
 
--- More sensible start and end of line
-map({ "n", "v" }, "H", "^")
-map({ "n", "v" }, "L", "$")
+    { "i",               "jk",           "<ESC>l",              { desc = "Exit insert mode", silent = true } },
 
--- Exit insert mode by quickly pressing jk
-map("i", "jk", "<ESC>l", { silent = true })
+    { { "n", "v" },      "<F1>",         "q",                   { desc = "Record a macro" } },
+    { { "n", "v" },      "q",            "<NOP>" },
 
--- This avoids accidentially recording a macro
-map({ "n", "v" }, "<F1>", "q")
-map({ "n", "v" }, "q", "<NOP>")
+    { "v",               "J",            ":move '>+1<CR>gv=gv", { desc = "Move selected lines down" } },
+    { "v",               "K",            ":move '<-2<CR>gv=gv", { desc = "Move selected lines up" } },
 
--- Move selected lines up or down
-map("v", "J", ":move '>+1<CR>gv=gv")
-map("v", "K", ":move '<-2<CR>gv=gv")
+    { "n",               "J",            "mzJ`z",               { desc = "Join lines without moving the cursor" } },
+}
 
--- Join lines without moving the cursor
-map("n", "J", "mzJ`z")
+for _, m in pairs(maps) do
+    vim.keymap.set(m[1], m[2], m[3], m[4])
+end

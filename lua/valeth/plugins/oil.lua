@@ -71,7 +71,7 @@ spec.lazy = false
 spec.cmd = { "Oil" }
 
 spec.keys = {
-    { "<Leader>ft", "<cmd>Oil<CR>", mode = "n" }
+    { "<Leader>ft", "<cmd>Oil<CR>", mode = "n", desc = "Open oil file table" }
 }
 
 return spec
