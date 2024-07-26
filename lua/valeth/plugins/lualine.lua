@@ -6,9 +6,23 @@ spec.dependencies = {
     "nvim-tree/nvim-web-devicons",
 }
 
+local function macro_recording()
+    local reg = vim.fn.reg_recording()
+
+    if reg == "" then
+        return ""
+    end
+
+    return "REC @ " .. reg
+end
+
 spec.config = function()
     require("lualine").setup({
         sections = {
+            lualine_a = {
+                macro_recording,
+                "mode",
+            },
             lualine_b = {
                 "branch",
                 "diff",
