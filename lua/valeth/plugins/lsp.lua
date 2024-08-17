@@ -131,6 +131,8 @@ spec.config = function()
     lsp_config.sqlls.setup({})
 
     lsp_config.nil_ls.setup({})
+
+    lsp_config.ruby_lsp.setup({})
 end
 
 return spec
