@@ -2,10 +2,15 @@ local spec = {
     "nvim-treesitter/nvim-treesitter",
 }
 
+
 spec.dependencies = {
     "nvim-treesitter/nvim-treesitter-context",
     "RRethy/nvim-treesitter-endwise",
 }
+
+
+spec.build = ":TSUpdate"
+
 
 spec.config = function()
     require("nvim-treesitter.configs").setup({
@@ -19,6 +24,8 @@ spec.config = function()
             "markdown_inline"
         },
 
+        sync_install = false,
+
         auto_install = true,
 
         highlight = {
@@ -31,7 +38,7 @@ spec.config = function()
 
     require("treesitter-context").setup()
 
-    require("nvim-treesitter.install").update({ with_sync = true })()
+    -- require("nvim-treesitter.install").update({})()
 end
 
 return spec
