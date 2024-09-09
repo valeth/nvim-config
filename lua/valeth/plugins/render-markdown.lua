@@ -15,7 +15,8 @@ spec.config = function()
     render_md.setup({
         heading = {
             -- Disable the background for heading lines
-            backgrounds = { "RenderMarkdownHdNoBg" }
+            backgrounds = { "RenderMarkdownHdNoBg" },
+            position = "inline",
         },
 
         -- just extra clutter
