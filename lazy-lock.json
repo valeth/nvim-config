@@ -40,7 +40,7 @@
   "render-markdown.nvim": { "branch": "main", "commit": "75a0a9596a91130fae43d3b7c0d6c651645ef1df" },
   "resession.nvim": { "branch": "master", "commit": "c4d92a57b3936a2d6e1c087dbd6b670da2b1b082" },
   "statuscol.nvim": { "branch": "main", "commit": "1022f922b77b44c36f8057ac29adbfd89ce86958" },
-  "telescope.nvim": { "branch": "0.1.x", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
+  "telescope.nvim": { "branch": "master", "commit": "b324469959908c1c7434eb65d80e87895e6828f7" },
   "trouble.nvim": { "branch": "main", "commit": "6efc446226679fda0547c0fd6a7892fd5f5b15d8" },
   "vim-wakatime": { "branch": "master", "commit": "f699e30ca1ba0c7f316847316fd0ba19d3ee51c1" },
   "which-key.nvim": { "branch": "main", "commit": "fb070344402cfc662299d9914f5546d840a22126" }
