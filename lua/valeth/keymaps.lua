@@ -20,6 +20,7 @@ local maps = {
 
     { { "n", "v" },      "<F1>",         "q",                   { desc = "Record a macro" } },
     { { "n", "v" },      "q",            "<NOP>" },
+    { { "n" },           "K",            "<NOP>" },
 
     { "v",               "J",            ":move '>+1<CR>gv=gv", { desc = "Move selected lines down" } },
     { "v",               "K",            ":move '<-2<CR>gv=gv", { desc = "Move selected lines up" } },
