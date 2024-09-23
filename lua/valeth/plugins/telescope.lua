@@ -14,6 +14,9 @@ spec.keys = {
     { "<Leader>fc", "<cmd>Telescope git_status<CR>", desc = "Find changed files" },
 }
 
+-- Not sure where in the state this is stored, so just track it here
+local find_files_show_hidden = false
+
 spec.config = function()
     local telescope = require("telescope")
     local builtin = require("telescope.builtin")
@@ -43,12 +46,26 @@ spec.config = function()
         end
     end
 
+    -- Very primitive solution, but good enough for now
+    local function toggle_hidden(bufnr)
+        local state = require("telescope.actions.state")
+        local current_picker = state.get_current_picker(bufnr)
+        local current_prompt = get_current_prompt(current_picker)
+
+        find_files_show_hidden = not find_files_show_hidden
+
+        builtin.find_files({ default_text = current_prompt, hidden = find_files_show_hidden })
+    end
+
+    local find_prompt_prefix = "🔍";
+
     telescope.setup({
         defaults = {
             initial_mode = "insert"
         },
         pickers = {
             buffers = {
+                prompt_prefix = find_prompt_prefix,
                 mappings = {
                     i = {
                         ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
@@ -60,9 +77,11 @@ spec.config = function()
                 }
             },
             find_files = {
+                prompt_prefix = find_prompt_prefix,
                 mappings = {
                     i = {
                         ["<C-f>"] = cycle_picker,
+                        ["<C-h>"] = toggle_hidden,
                     }
                 }
             }
