@@ -13,7 +13,7 @@ local maps = {
     { "n",               "j",            "gj" },
     { "n",               "k",            "gk" },
 
-    { { "n", "v" },      "H",            "^",                   { desc = "Move to start of line" } },
+    { { "n", "v" },      "H",            "0",                   { desc = "Move to start of line" } },
     { { "n", "v" },      "L",            "$",                   { desc = "Move to end of line" } },
 
     { "i",               "jk",           "<ESC>l",              { desc = "Exit insert mode", silent = true } },
