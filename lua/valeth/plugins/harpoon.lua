@@ -1,5 +1,6 @@
 local spec = {
     "ThePrimeagen/harpoon",
+    branch = "harpoon2",
 }
 
 spec.dependencies = {
@@ -7,21 +8,61 @@ spec.dependencies = {
     "nvim-telescope/telescope.nvim",
 }
 
-spec.keys = {
-    { "<Leader>fh", "<cmd>Telescope harpoon marks<CR>", desc = "Show harpoon marks" },
-}
+-- TODO: Add keybinds to remove mark from list and reorder them
+local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+
+    for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+    end
+
+    local config = require("telescope.config").values
+    local pickers = require("telescope.pickers")
+    local finders = require("telescope.finders")
+
+    local picker = pickers.new({}, {
+        prompt_title = "Harpoon",
+        finder = finders.new_table({
+            results = file_paths,
+        }),
+        previewer = config.file_previewer({}),
+        sorter = config.generic_sorter({}),
+    })
+
+    picker:find()
+end
 
 spec.config = function()
-    local telescope = require("telescope")
+    local harpoon = require("harpoon")
+    local keymap = vim.keymap.set
 
-    telescope.load_extension("harpoon")
+    harpoon:setup()
 
-    local harpoon_mark = require("harpoon.mark")
-    local harpoon_ui = require("harpoon.ui")
+    keymap("n", "<Leader>hl", function()
+        toggle_telescope(harpoon:list())
+    end, { desc = "Show harpoon marks" })
 
-    vim.keymap.set("n", "<Leader>am", harpoon_mark.add_file, { desc = "Add a file to marks" })
-    vim.keymap.set("n", "<Leader>gn", harpoon_ui.nav_next, { desc = "Go to next mark" })
-    vim.keymap.set("n", "<Leader>gp", harpoon_ui.nav_prev, { desc = "Go to previous mark" })
+    keymap("n", "<Leader>ha", function()
+        harpoon:list():add()
+    end, { desc = "Add current file to marks" })
+
+    keymap("n", "<Leader>hr", function()
+        harpoon:list():remove()
+    end, { desc = "Remove current file from marks" })
+
+    keymap("n", "<Leader>hn", function()
+        harpoon:list():next()
+    end, { desc = "Go to next mark" })
+
+    keymap("n", "<Leader>hp", function()
+        harpoon:list():prev()
+    end, { desc = "Go to previous mark" })
+
+    for i = 1, 5 do
+        keymap("n", "<Leader>h" .. i, function()
+            harpoon:list():select(i)
+        end, { desc = "Go to marked file " .. i })
+    end
 end
 
 return spec
