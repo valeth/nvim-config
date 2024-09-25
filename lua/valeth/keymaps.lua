@@ -19,6 +19,7 @@ local maps = {
     { "i",               "jk",           "<ESC>l",              { desc = "Exit insert mode", silent = true } },
 
     { { "n", "v" },      "<F1>",         "q",                   { desc = "Record a macro" } },
+    { { "i" },           "<F1>",         "<NOP>" },
     { { "n", "v" },      "q",            "<NOP>" },
     { { "n" },           "K",            "<NOP>" },
 
