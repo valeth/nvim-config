@@ -8,25 +8,55 @@ spec.dependencies = {
     "nvim-telescope/telescope.nvim",
 }
 
--- TODO: Add keybinds to remove mark from list and reorder them
-local function toggle_telescope(harpoon_files)
+--- @param harpoon Harpoon
+local function toggle_telescope(harpoon)
     local file_paths = {}
 
-    for _, item in ipairs(harpoon_files.items) do
-        table.insert(file_paths, item.value)
+    for idx, item in pairs(harpoon:list().items) do
+        table.insert(file_paths, { idx, item.value })
     end
 
     local config = require("telescope.config").values
     local pickers = require("telescope.pickers")
     local finders = require("telescope.finders")
+    local action_state = require("telescope.actions.state")
+
+    local function mappings(prompt_bufnr, map)
+        map("i", "<C-d>", function()
+            local cur_picker = action_state.get_current_picker(prompt_bufnr)
+            local sel_entry = action_state.get_selected_entry().value[2]
+            local sel_item = harpoon:list():get_by_value(sel_entry)
+
+            if sel_item == nil then
+                return
+            end
+
+            cur_picker:delete_selection(function(sel)
+                harpoon:list():remove(sel_item)
+            end)
+        end)
+
+        return true
+    end
+
+    local finder = finders.new_table({
+        results = file_paths,
+        entry_maker = function(entry)
+            return {
+                value = entry,
+                display = entry[1] .. ": " .. entry[2],
+                ordinal = entry[2],
+                path = entry[2],
+            }
+        end
+    })
 
     local picker = pickers.new({}, {
         prompt_title = "Harpoon",
-        finder = finders.new_table({
-            results = file_paths,
-        }),
+        finder = finder,
         previewer = config.file_previewer({}),
         sorter = config.generic_sorter({}),
+        attach_mappings = mappings,
     })
 
     picker:find()
@@ -38,9 +68,9 @@ spec.config = function()
 
     harpoon:setup()
 
-    keymap("n", "<Leader>hl", function()
-        toggle_telescope(harpoon:list())
-    end, { desc = "Show harpoon marks" })
+    keymap("n", "<Leader>fm", function()
+        toggle_telescope(harpoon)
+    end, { desc = "Show list of harpoon marks" })
 
     keymap("n", "<Leader>ha", function()
         harpoon:list():add()
