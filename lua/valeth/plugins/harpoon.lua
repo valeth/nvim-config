@@ -68,7 +68,7 @@ spec.config = function()
 
     harpoon:setup()
 
-    keymap("n", "<Leader>fm", function()
+    keymap("n", "<Leader>fh", function()
         toggle_telescope(harpoon)
     end, { desc = "Show list of harpoon marks" })
 
