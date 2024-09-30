@@ -27,6 +27,7 @@ local maps = {
     { "v",               "K",            ":move '<-2<CR>gv=gv", { desc = "Move selected lines up" } },
 
     { "n",               "J",            "mzJ`z",               { desc = "Join lines without moving the cursor" } },
+    { "n",               "<C-p>",        "mzyyp`zj",            { desc = "Duplicate current line" } },
 }
 
 for _, m in pairs(maps) do
