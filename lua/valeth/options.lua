@@ -41,3 +41,14 @@ aucmd({ "InsertEnter", "InsertLeave", "BufEnter" }, {
         vim.opt.cursorline = not entered_insert_mode
     end
 })
+
+-- Open help window in a vertical split
+aucmd("BufWinEnter", {
+    group = "valeth",
+    pattern = "*/doc/*",
+    callback = function()
+        if vim.bo.filetype == "help" then
+            vim.cmd.wincmd("H")
+        end
+    end
+})
