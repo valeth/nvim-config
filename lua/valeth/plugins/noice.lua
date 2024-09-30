@@ -16,10 +16,15 @@ spec.opts = {
         command_palette = true,
         lsp_doc_border = true,
     },
+    views = {
+        notify = {
+            replace = true,
+        },
+    },
 }
 
 spec.keys = {
-    { "<leader>nd", "<cmd>NoiceDismiss<CR>", desc = "Dismiss all noice messages"},
+    { "<leader>nd", "<cmd>NoiceDismiss<CR>", desc = "Dismiss all noice messages" },
 }
 
 spec.dependencies = {
