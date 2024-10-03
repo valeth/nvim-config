@@ -133,6 +133,9 @@ spec.config = function()
     lsp_config.nil_ls.setup({})
 
     lsp_config.ruby_lsp.setup({})
+
+    lsp_config.denols.setup({})
+    -- lsp_config.ts_ls.setup({})
 end
 
 return spec
