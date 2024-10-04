@@ -13,6 +13,7 @@ spec.build = ":TSUpdate"
 
 
 spec.config = function()
+    ---@diagnostic disable-next-line:missing-fields
     require("nvim-treesitter.configs").setup({
         ensure_installed = {
             "rust",
@@ -37,8 +38,6 @@ spec.config = function()
     })
 
     require("treesitter-context").setup()
-
-    -- require("nvim-treesitter.install").update({})()
 end
 
 return spec

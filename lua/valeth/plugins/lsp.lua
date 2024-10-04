@@ -73,7 +73,6 @@ spec.config = function()
     local neoconf = require("neoconf")
 
     neoconf.setup({
-        -- ignore foreign imports
         import = {
             vscode = false,
             coc = false,

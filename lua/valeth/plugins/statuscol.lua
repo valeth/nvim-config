@@ -19,6 +19,9 @@ spec.config = function()
 
     vim.opt.signcolumn = "yes"
     vim.opt.foldcolumn = "1"
+
+    -- This seems to work just fine
+    ---@diagnostic disable-next-line:param-type-mismatch
     vim.opt.fillchars:append({
         fold = " ",
         foldopen = "",

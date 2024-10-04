@@ -16,6 +16,7 @@ spec.config = function()
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
     cmp.setup({
+        ---@diagnostic disable-next-line:missing-fields
         formatting = {
             format = lspk.cmp_format({
                 mode = "symbol_text",
