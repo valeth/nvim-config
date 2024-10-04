@@ -1,10 +1,15 @@
-return {
+local spec = {
     "wakatime/vim-wakatime",
-    event = function()
-        if os.getenv("WAKATIME_HOME") then
-            return { "VimEnter" }
-        else
-            return {}
-        end
-    end
 }
+
+spec.event = function()
+    local wakatime_home = os.getenv("WAKATIME_HOME")
+
+    if wakatime_home and vim.loop.fs_stat(wakatime_home) then
+        return { "VimEnter" }
+    end
+
+    return {}
+end
+
+return spec
