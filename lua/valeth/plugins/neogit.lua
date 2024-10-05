@@ -13,6 +13,13 @@ spec.keys = {
     { "<Leader>vpup", "<cmd>!git push<CR>",     desc = "Push local commits to upstream" },
 }
 
-spec.config = true
+spec.config = {
+    -- handled by statuscol
+    signs = {
+        hunk = { "", "" },
+        item = { "", "" },
+        section = { "", "" },
+    }
+}
 
 return spec
