@@ -18,7 +18,6 @@ local catppuccin_spec = {
     priority = 1000,
     config = function()
         require("catppuccin").setup({
-            transparent_background = true,
             custom_highlights = function(colors)
                 return {
                     Folded = { bg = colors.none },
@@ -26,7 +25,11 @@ local catppuccin_spec = {
                 }
             end,
             integrations = {
-                notify = true,
+                mason = true,
+                noice = true,
+                harpoon = true,
+                lsp_trouble = true,
+                which_key = true,
             }
         })
 
