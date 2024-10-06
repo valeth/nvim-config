@@ -7,6 +7,7 @@ spec.dependencies = {
     "nvim-treesitter/nvim-treesitter-context",
     "nvim-treesitter/nvim-treesitter-textobjects",
     "RRethy/nvim-treesitter-endwise",
+    { "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
 }
 
 
