@@ -135,6 +135,8 @@ spec.config = function()
 
     lsp_config.denols.setup({})
     -- lsp_config.ts_ls.setup({})
+
+    lsp_config.nushell.setup({})
 end
 
 return spec
