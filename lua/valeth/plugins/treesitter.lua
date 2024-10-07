@@ -7,7 +7,7 @@ spec.dependencies = {
     "nvim-treesitter/nvim-treesitter-context",
     "nvim-treesitter/nvim-treesitter-textobjects",
     "RRethy/nvim-treesitter-endwise",
-    { "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
+    "nushell/tree-sitter-nu",
 }
 
 
@@ -18,13 +18,27 @@ spec.config = function()
     ---@diagnostic disable-next-line:missing-fields
     require("nvim-treesitter.configs").setup({
         ensure_installed = {
+            -- programming languages
             "rust",
             "lua",
+            "ruby",
+            "python",
+            "elixir",
             "javascript",
             "typescript",
+            -- markup and config languages
+            "html",
+            "css",
+            "json",
+            "yaml",
+            "toml",
             "regex",
             "markdown",
-            "markdown_inline"
+            "markdown_inline",
+            -- shell scripting and system configuration
+            "bash",
+            "nu",
+            "nix",
         },
 
         sync_install = false,
