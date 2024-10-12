@@ -18,9 +18,15 @@ local maps = {
 
     { "i",               "jk",           "<ESC>l",              { desc = "Exit insert mode", silent = true } },
 
-    { { "n", "v" },      "<F1>",         "q",                   { desc = "Record a macro" } },
+    -- If I need help I'll use the :help command
     { { "i" },           "<F1>",         "<NOP>" },
+    { { "n", "i" },      "<D-F1>",       "<NOP>" },
+
+    -- Replace default macro binding
+    { { "n", "v" },      "<F1>",         "q",                   { desc = "Record a macro" } },
     { { "n", "v" },      "q",            "<NOP>" },
+
+    -- No manpages, LSP only
     { { "n" },           "K",            "<NOP>" },
 
     { "v",               "J",            ":move '>+1<CR>gv=gv", { desc = "Move selected lines down" } },
