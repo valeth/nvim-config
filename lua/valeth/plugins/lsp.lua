@@ -15,7 +15,12 @@ local function rust_analyzer_setup(lsp_config)
         cargo = {
             features = "all"
         },
+        checkOnSave = true,
     }
+
+    if vim.fn.executable("cargo-clippy") == 1 then
+        rust_analyzer_settings.check = { command = "clippy" }
+    end
 
     -- Don't have rustup available if using nix shell
     if vim.fn.executable("rustup") == 1 then
