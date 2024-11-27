@@ -16,6 +16,9 @@ spec.opts = {
         command_palette = true,
         lsp_doc_border = true,
     },
+    messages = {
+        view = "mini",
+    },
     views = {
         notify = {
             replace = true,
