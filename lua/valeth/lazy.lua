@@ -56,6 +56,5 @@ require("lazy").setup({
     },
     spec = {
         { import = "valeth.plugins" },
-        { import = "valeth.plugins.dap" },
     }
 })
