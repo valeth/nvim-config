@@ -8,6 +8,9 @@ local maps = {
     -- Yank to clipboard
     { { "n", "v" },      "<Leader>y",    [["+y]],               { desc = "Yank to clipboard" } },
     { { "n", "v" },      "<Leader>Y",    [["+Y]],               { desc = "Yank line to clipboard" } },
+    { { "n", "v" },      "<Leader>p",    [["+p]],               { desc = "Paste clipboard after cursor" } },
+    { { "n", "v" },      "<Leader>P",    [["+P]],               { desc = "Paste clipboard before cursor" } },
+
 
     -- Move up and down visual lines for the few times I need wrapping
     { "n",               "j",            "gj" },
