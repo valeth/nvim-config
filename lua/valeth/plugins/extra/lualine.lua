@@ -1,10 +1,10 @@
 local spec = {
     "nvim-lualine/lualine.nvim",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+    }
 }
 
-spec.dependencies = {
-    "nvim-tree/nvim-web-devicons",
-}
 
 local function macro_recording()
     local reg = vim.fn.reg_recording()
@@ -15,6 +15,7 @@ local function macro_recording()
 
     return "REC @ " .. reg
 end
+
 
 spec.config = function()
     require("lualine").setup({
@@ -39,5 +40,6 @@ spec.config = function()
         },
     })
 end
+
 
 return spec

@@ -22,6 +22,9 @@ vim.opt.fillchars:append({ eob = "·" })
 
 vim.g.mapleader = " "
 
+vim.diagnostic.config({
+    virtual_text = false,
+})
 
 augroup("valeth", { clear = true })
 

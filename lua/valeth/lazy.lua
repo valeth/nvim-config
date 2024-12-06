@@ -55,6 +55,8 @@ require("lazy").setup({
         border = "rounded",
     },
     spec = {
-        { import = "valeth.plugins" },
+        { import = "valeth.plugins.colorschemes" },
+        { import = "valeth.plugins.core" },
+        { import = "valeth.plugins.extra" },
     }
 })
