@@ -5,6 +5,10 @@ local spec = {
 spec.event = "VeryLazy"
 
 spec.opts = {
+    notify = {
+        -- keep this disabled until I find a solution to make it less obnoxious
+        enabled = false
+    },
     lsp = {
         override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
