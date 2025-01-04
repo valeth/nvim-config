@@ -122,7 +122,7 @@ spec.config = function()
             bufmap(buf, "n", "<Leader>ci", vim.diagnostic.open_float, "Show diagnostics")
             bufmap(buf, "n", "<Leader>re", vim.lsp.buf.rename, "Rename item under cursor")
             bufmap(buf, { "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, "Open signature help")
-            bufmap(buf, "n", "<C-i>", toggle_inlay_hints, "Toggle LSP inlay hints")
+            bufmap(buf, "n", "<Leader>ch", toggle_inlay_hints, "Toggle LSP inlay hints")
         end
     })
 
