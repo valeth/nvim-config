@@ -1,50 +1,22 @@
-local uv = vim.loop
-
-
-local function locked_commit()
-    local lockfile_path = vim.fn.stdpath("config") .. "/lazy-lock.json"
-    local lockfile = io.open(lockfile_path, "r")
-
-    if not lockfile then
-        return nil
-    end
-
-    local text = lockfile:read("*all")
-    lockfile:close()
-    local json = vim.json.decode(text)
-
-    return json["lazy.nvim"]["commit"]
-end
-
-
-local function checkout_commit(path)
-    local commit = locked_commit()
-
-    if not commit then
-        return
-    end
-
-    uv.spawn("git", {
-        args = { "checkout", commit },
-        cwd = path
-    })
-end
-
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
+    local output = vim.fn.system({
         "git",
         "clone",
         "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
         "--branch=stable",
+        "https://github.com/folke/lazy.nvim.git",
         lazypath,
     })
 
-    checkout_commit(lazypath)
-    vim.wait(1)
+    if vim.v.shell_error ~= 0 then
+        vim.notify("Failed to clone lazy.nvim", vim.log.levels.ERROR)
+        vim.notify(output, vim.log.levels.ERROR)
+        vim.fn.getchar()
+        os.exit(1)
+    end
+
     vim.notify("Installed lazy.nvim")
 end
 
