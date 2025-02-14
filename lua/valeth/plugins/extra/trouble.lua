@@ -6,7 +6,9 @@ spec.dependencies = {
     "nvim-tree/nvim-web-devicons",
 }
 
-spec.opts = {}
+spec.opts = {
+    focus = true
+}
 
 spec.cmd = "Trouble"
 
