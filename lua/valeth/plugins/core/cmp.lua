@@ -16,6 +16,10 @@ spec.config = function()
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
     cmp.setup({
+        -- Only trigger completion explicitly through keymapping
+        completion = {
+            autocomplete = false
+        },
         ---@diagnostic disable-next-line:missing-fields
         formatting = {
             format = lspk.cmp_format({
