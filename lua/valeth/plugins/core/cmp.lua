@@ -1,3 +1,5 @@
+local keymap = vim.keymap.set
+
 local spec = {
     "hrsh7th/nvim-cmp",
 }
@@ -9,6 +11,21 @@ spec.dependencies = {
     "L3MON4D3/LuaSnip", -- just here so snippets returned from LSP servers don't throw errors
 }
 
+local function autocompletion_enabled()
+    local cmp = require("cmp")
+    local trigger_event = cmp.TriggerEvent.TextChanged
+    return vim.tbl_contains(cmp.get_config().completion.autocomplete or {}, trigger_event)
+end
+
+local function toggle_autocompletion()
+    local cmp = require("cmp")
+    if autocompletion_enabled() then
+        cmp.get_config().completion.autocomplete = false
+    else
+        cmp.get_config().completion.autocomplete = { cmp.TriggerEvent.TextChanged }
+    end
+end
+
 spec.config = function()
     local cmp = require("cmp")
     local lspk = require("lspkind")
@@ -16,7 +33,7 @@ spec.config = function()
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
     cmp.setup({
-        -- Only trigger completion explicitly through keymapping
+        -- Only trigger completion explicitly through keymapping, or when toggled
         completion = {
             autocomplete = false
         },
@@ -45,6 +62,8 @@ spec.config = function()
             { name = "path" },
         })
     })
+
+    keymap("n", "<Leader>cc", toggle_autocompletion, { desc = "Toggle autocompletion" })
 end
 
 
