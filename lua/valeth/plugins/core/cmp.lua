@@ -8,7 +8,6 @@ spec.dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
     "onsails/lspkind.nvim",
-    "L3MON4D3/LuaSnip", -- just here so snippets returned from LSP servers don't throw errors
 }
 
 local function autocompletion_enabled()
@@ -42,11 +41,6 @@ spec.config = function()
             format = lspk.cmp_format({
                 mode = "symbol_text",
             })
-        },
-        snippet = {
-            expand = function(args)
-                require("luasnip").lsp_expand(args.body)
-            end
         },
         window = {
             completion = cmp.config.window.bordered()
