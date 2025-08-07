@@ -1,54 +1,31 @@
 local spec = {
-    "neovim/nvim-lspconfig",
-}
-
-spec.dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     "nvim-telescope/telescope.nvim",
-    "folke/neodev.nvim",
     "folke/neoconf.nvim",
 }
 
-local function rust_analyzer_setup(lsp_config)
-    local rust_analyzer_settings = {
-        cargo = {
-            features = "all"
-        },
-        checkOnSave = true,
-    }
-
-    if vim.fn.executable("cargo-clippy") == 1 then
-        rust_analyzer_settings.check = { command = "clippy" }
-    end
-
-    -- Don't have rustup available if using nix shell
-    if vim.fn.executable("rustup") == 1 then
-        rust_analyzer_settings = vim.tbl_extend("keep", rust_analyzer_settings, {
-            rustfmt = { extraArgs = { "+nightly" } }
-        })
-    end
-
-    lsp_config.rust_analyzer.setup({
-        settings = {
-            ["rust-analyzer"] = rust_analyzer_settings
-        }
-    })
-end
-
-local function lua_ls_setup(lsp_config)
-    lsp_config.lua_ls.setup({
-        capabilities = {
-            textDocument = {
-                completion = {
-                    completionItem = {
-                        snippetSupport = false
-                    }
-                }
+spec.config = function()
+    require("mason").setup({
+        ui = {
+            icons = {
+                package_installed = "✓",
+                package_pending = "➜",
+                package_uninstalled = "✗"
             }
         }
     })
+
+    require("neoconf").setup({
+        import = {
+            vscode = false,
+            coc = false,
+            nlsp = false,
+        }
+    })
 end
+
 
 local function toggle_inlay_hints()
     -- the docs suggest this, so this should be fine
@@ -59,7 +36,11 @@ local function toggle_inlay_hints()
     vim.notify("Inlay hints " .. status, vim.log.levels.INFO)
 end
 
----@param buf buffer
+
+local autocmd = vim.api.nvim_create_autocmd
+local autogroup = vim.api.nvim_create_augroup
+
+---@param buf integer
 ---@param mode string | string[]
 ---@param rhs string
 ---@param lhs string | function
@@ -74,74 +55,77 @@ local function bufmap(buf, mode, rhs, lhs, desc)
     vim.keymap.set(mode, rhs, lhs, opts)
 end
 
-spec.config = function()
-    local neoconf = require("neoconf")
+autocmd("LspAttach", {
+    group = autogroup("LspAttachConfig", {}),
+    callback = function(event)
+        local tsb = require("telescope.builtin")
+        local buf = event.buf
+        bufmap(buf, "n", "gd", tsb.lsp_definitions, "Go to definition")
+        bufmap(buf, "n", "gr", tsb.lsp_references, "Go to reference")
+        bufmap(buf, "n", "K", vim.lsp.buf.hover, "Show documentation in hover")
+        bufmap(buf, "n", "<Leader>ca", vim.lsp.buf.code_action, "Run a code action")
+        bufmap(buf, "n", "<Leader>ci", vim.diagnostic.open_float, "Show diagnostics")
+        bufmap(buf, "n", "<Leader>re", vim.lsp.buf.rename, "Rename item under cursor")
+        bufmap(buf, { "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, "Open signature help")
+        bufmap(buf, "n", "<Leader>ch", toggle_inlay_hints, "Toggle LSP inlay hints")
+    end
+})
 
-    neoconf.setup({
-        import = {
-            vscode = false,
-            coc = false,
-            nlsp = false,
-        }
+
+local lsp_configs = {}
+
+lsp_configs["rust_analyzer"] = {
+    settings = {
+        cargo = {
+            features = "all"
+        },
+        checkOnSave = true,
+    }
+}
+
+if vim.fn.executable("cargo-clippy") == 1 then
+    lsp_configs.rust_analyzer.settings.check = { command = "clippy" }
+end
+
+-- Don't have rustup available if using nix shell
+if vim.fn.executable("rustup") == 1 then
+    lsp_configs.rust_analyzer.settings = vim.tbl_extend("keep", lsp_configs.rust_analyzer.settings, {
+        rustfmt = { extraArgs = { "+nightly" } }
     })
+end
 
-    local mason = require("mason")
-    local mason_lspconfig = require("mason-lspconfig")
-
-    mason.setup({
-        ui = {
-            icons = {
-                package_installed = "✓",
-                package_pending = "➜",
-                package_uninstalled = "✗"
+lsp_configs["lua_ls"] = {
+    settings = {
+        Lua = {
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("**/*.lua", true)
             }
         }
-    })
-
-    mason_lspconfig.setup({
-        ensure_installed = {
-            "lua_ls",
-            "rust_analyzer",
+    },
+    capabilities = {
+        textDocument = {
+            completion = {
+                completionItem = {
+                    snippetSupport = false
+                }
+            }
         }
-    })
+    }
+}
 
-    local lsp_config = require("lspconfig")
-    local autocmd = vim.api.nvim_create_autocmd
-    local autogroup = vim.api.nvim_create_augroup
+lsp_configs["nil_ls"] = {}
+lsp_configs["ruby_lsp"] = {}
+lsp_configs["denols"] = {}
+lsp_configs["nushell"] = {}
+lsp_configs["qmlls"] = {}
 
 
-    autocmd("LspAttach", {
-        group = autogroup("LspAttachConfig", {}),
-        callback = function(event)
-            local tsb = require("telescope.builtin")
-            local buf = event.buf
-            bufmap(buf, "n", "gd", tsb.lsp_definitions, "Go to definition")
-            bufmap(buf, "n", "gr", tsb.lsp_references, "Go to reference")
-            bufmap(buf, "n", "K", vim.lsp.buf.hover, "Show documentation in hover")
-            bufmap(buf, "n", "<Leader>ca", vim.lsp.buf.code_action, "Run a code action")
-            bufmap(buf, "n", "<Leader>ci", vim.diagnostic.open_float, "Show diagnostics")
-            bufmap(buf, "n", "<Leader>re", vim.lsp.buf.rename, "Rename item under cursor")
-            bufmap(buf, { "n", "i" }, "<C-h>", vim.lsp.buf.signature_help, "Open signature help")
-            bufmap(buf, "n", "<Leader>ch", toggle_inlay_hints, "Toggle LSP inlay hints")
-        end
-    })
-
-    require("neodev").setup()
-
-    lua_ls_setup(lsp_config)
-
-    rust_analyzer_setup(lsp_config)
-
-    lsp_config.sqlls.setup({})
-
-    lsp_config.nil_ls.setup({})
-
-    lsp_config.ruby_lsp.setup({})
-
-    lsp_config.denols.setup({})
-    -- lsp_config.ts_ls.setup({})
-
-    lsp_config.nushell.setup({})
+for lsp, config in pairs(lsp_configs) do
+    -- cursed table empty check
+    if next(config) ~= nil then
+        vim.lsp.config(lsp, config)
+    end
+    vim.lsp.enable(lsp)
 end
 
 return spec
