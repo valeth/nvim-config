@@ -1,5 +1,29 @@
-local function started_without_args()
-    return vim.fn.argc(-1) == 0
+local function strip_schema(path_url)
+    if path_url == nil then
+        return nil
+    end
+
+    local result = string.gsub(path_url, "[a-zA-Z0-9%+%-%.]+://(.+)", "%1")
+
+    if result ~= nil then
+        return result
+    end
+
+    return path_url
+end
+
+local function persistent_session()
+    if vim.fn.argc(-1) == 0 then
+        return true
+    end
+
+    local arg = strip_schema(vim.fn.argv(0))
+
+    if arg ~= nil and vim.fn.isdirectory(arg) == 1 then
+        return true
+    end
+
+    return false
 end
 
 local function session_name()
@@ -13,9 +37,11 @@ local function session_name()
 end
 
 local function load_session()
-    if not started_without_args() then
+    if not persistent_session() then
         return
     end
+
+    vim.notify("loading session", vim.log.levels.INFO)
 
     local ok = pcall(require("resession").load, session_name(), { dir = "dirsession", silence_errors = true })
 
@@ -25,9 +51,11 @@ local function load_session()
 end
 
 local function save_session()
-    if not started_without_args() then
+    if not persistent_session() then
         return
     end
+
+    vim.notify("saving session", vim.log.levels.INFO)
 
     local ok = pcall(require("resession").save, session_name(), { dir = "dirsession", notify = false })
 
