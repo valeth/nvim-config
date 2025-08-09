@@ -5,8 +5,6 @@ local spec = {
 
 spec.dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "RRethy/nvim-treesitter-endwise",
-    "nushell/tree-sitter-nu",
 }
 
 
@@ -48,8 +46,6 @@ spec.config = function()
             enable = true,
             additional_vim_regex_highlighting = false,
         },
-
-        endwise = { enable = true },
 
         textobjects = {
             select = {
