@@ -121,6 +121,7 @@ lsp_configs["nil_ls"] = {}
 lsp_configs["ruby_lsp"] = {}
 lsp_configs["denols"] = {}
 lsp_configs["qmlls"] = {}
+lsp_configs["tinymist"] = {}
 
 
 for lsp, config in pairs(lsp_configs) do
