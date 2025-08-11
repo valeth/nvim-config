@@ -3,6 +3,7 @@ local aucmd = vim.api.nvim_create_autocmd
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.winborder = "rounded"
 
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
