@@ -37,6 +37,9 @@ local maps = {
 
     { "n",               "J",            "mzJ`z",               { desc = "Join lines without moving the cursor" } },
     { "n",               "<C-p>",        "mzyyp`zj",            { desc = "Duplicate current line" } },
+    { "c",               "<C-A>",        "<Home>",              desc = "Go to start of line" },
+    { "c",               "<C-E>",        "<End>",               desc = "Go to end of line" },
+
 }
 
 for _, m in pairs(maps) do
