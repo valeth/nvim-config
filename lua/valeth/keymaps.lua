@@ -32,8 +32,8 @@ local maps = {
     -- No manpages, LSP only
     { { "n" },           "K",            "<NOP>" },
 
-    { "v",               "J",            ":move '>+1<CR>gv=gv", { desc = "Move selected lines down" } },
-    { "v",               "K",            ":move '<-2<CR>gv=gv", { desc = "Move selected lines up" } },
+    { "v",               "J",            ":move '>+1<CR>gv=gv", { desc = "Move selected lines down", silent = true } },
+    { "v",               "K",            ":move '<-2<CR>gv=gv", { desc = "Move selected lines up", silent = true } },
 
     { "n",               "J",            "mzJ`z",               { desc = "Join lines without moving the cursor" } },
     { "n",               "<C-p>",        "mzyyp`zj",            { desc = "Duplicate current line" } },
