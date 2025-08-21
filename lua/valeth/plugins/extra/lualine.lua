@@ -33,6 +33,7 @@ spec.config = function()
                 },
             },
             lualine_x = {
+                "lsp_status",
                 "encoding",
                 { "fileformat", icons_enabled = false },
                 "filetype"
