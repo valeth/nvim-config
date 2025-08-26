@@ -25,8 +25,6 @@ spec.config = function()
                 "mode",
             },
             lualine_b = {
-                "branch",
-                "diff",
                 {
                     "diagnostics",
                     symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" }
@@ -36,7 +34,6 @@ spec.config = function()
                 "lsp_status",
                 "encoding",
                 { "fileformat", icons_enabled = false },
-                "filetype"
             }
         },
     })
