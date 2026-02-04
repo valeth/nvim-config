@@ -71,28 +71,34 @@ autocmd("LspAttach", {
     end
 })
 
-
-local lsp_configs = {}
-
-lsp_configs["rust_analyzer"] = {
-    settings = {
+local function rust_analyzer_setup(lsp_configs)
+    local settings = {
         cargo = {
             features = "all"
         },
         checkOnSave = true,
     }
-}
 
-if vim.fn.executable("cargo-clippy") == 1 then
-    lsp_configs.rust_analyzer.settings.check = { command = "clippy" }
+    if vim.fn.executable("cargo-clippy") == 1 then
+        settings.check = { command = "clippy" }
+    end
+
+    -- Don't have rustup available if using nix shell
+    if vim.fn.executable("rustup") == 1 then
+        settings.rustfmt = { extraArgs = { "+nightly" } }
+    end
+
+    lsp_configs["rust_analyzer"] = {
+        settings = {
+            ["rust-analyzer"] = settings
+        }
+    }
 end
 
--- Don't have rustup available if using nix shell
-if vim.fn.executable("rustup") == 1 then
-    lsp_configs.rust_analyzer.settings = vim.tbl_extend("keep", lsp_configs.rust_analyzer.settings, {
-        rustfmt = { extraArgs = { "+nightly" } }
-    })
-end
+
+local lsp_configs = {}
+
+rust_analyzer_setup(lsp_configs)
 
 lsp_configs["lua_ls"] = {
     settings = {
