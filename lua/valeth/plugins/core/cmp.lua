@@ -27,7 +27,6 @@ end
 
 spec.config = function()
     local cmp = require("cmp")
-    local lspk = require("lspkind")
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -35,12 +34,6 @@ spec.config = function()
         -- Only trigger completion explicitly through keymapping, or when toggled
         completion = {
             autocomplete = false
-        },
-        ---@diagnostic disable-next-line:missing-fields
-        formatting = {
-            format = lspk.cmp_format({
-                mode = "symbol_text",
-            })
         },
         window = {
             completion = cmp.config.window.bordered()
