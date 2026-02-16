@@ -123,7 +123,17 @@ lsp_configs["nushell"] = {
     cmd = { "nu", "--no-config-file", "--lsp" },
 }
 
-lsp_configs["nil_ls"] = {}
+lsp_configs["nil_ls"] = {
+    settings = {
+        ["nil"] = {
+            nix = {
+                flake = {
+                    autoArchive = true
+                }
+            }
+        }
+    }
+}
 lsp_configs["ruby_lsp"] = {}
 lsp_configs["denols"] = {}
 lsp_configs["qmlls"] = {}
