@@ -43,6 +43,7 @@ aucmd({ "InsertEnter", "InsertLeave", "BufEnter" }, {
     callback = function(args)
         local entered_insert_mode = args.event == "InsertEnter"
         vim.opt.cursorline = not entered_insert_mode
+        vim.opt.relativenumber = not entered_insert_mode
     end
 })
 
