@@ -1,5 +1,31 @@
-local autocmd = vim.api.nvim_create_autocmd
-local autogroup = vim.api.nvim_create_augroup
+local spec = {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    "nvim-telescope/telescope.nvim",
+    "folke/neoconf.nvim",
+}
+
+spec.config = function()
+    require("mason").setup({
+        ui = {
+            icons = {
+                package_installed = "✓",
+                package_pending = "➜",
+                package_uninstalled = "✗"
+            }
+        }
+    })
+
+    require("neoconf").setup({
+        import = {
+            vscode = false,
+            coc = false,
+            nlsp = false,
+        }
+    })
+end
+
 
 local function toggle_inlay_hints()
     -- the docs suggest this, so this should be fine
@@ -9,6 +35,10 @@ local function toggle_inlay_hints()
     local status = to_enable and "enabled" or "disabled"
     vim.notify("Inlay hints " .. status, vim.log.levels.INFO)
 end
+
+
+local autocmd = vim.api.nvim_create_autocmd
+local autogroup = vim.api.nvim_create_augroup
 
 ---@param buf integer
 ---@param mode string | string[]
@@ -41,29 +71,34 @@ autocmd("LspAttach", {
     end
 })
 
+local function rust_analyzer_setup(lsp_configs)
+    local settings = {
+        cargo = {
+            features = "all"
+        },
+        checkOnSave = true,
+    }
+
+    if vim.fn.executable("cargo-clippy") == 1 then
+        settings.check = { command = "clippy" }
+    end
+
+    -- Don't have rustup available if using nix shell
+    if vim.fn.executable("rustup") == 1 then
+        settings.rustfmt = { extraArgs = { "+nightly" } }
+    end
+
+    lsp_configs["rust_analyzer"] = {
+        settings = {
+            ["rust-analyzer"] = settings
+        }
+    }
+end
+
+
 local lsp_configs = {}
 
-local ra_settings = {
-    cargo = {
-        features = "all"
-    },
-    checkOnSave = true,
-}
-
-if vim.fn.executable("cargo-clippy") == 1 then
-    ra_settings.check = { command = "clippy" }
-end
-
--- Don't have rustup available if using nix shell
-if vim.fn.executable("rustup") == 1 then
-    ra_settings.rustfmt = { extraArgs = { "+nightly" } }
-end
-
-lsp_configs["rust_analyzer"] = {
-    settings = {
-        ["rust-analyzer"] = ra_settings
-    }
-}
+rust_analyzer_setup(lsp_configs)
 
 lsp_configs["lua_ls"] = {
     settings = {
@@ -84,6 +119,10 @@ lsp_configs["lua_ls"] = {
     }
 }
 
+-- lsp_configs["nushell"] = {
+--     cmd = { "nu", "--no-config-file", "--lsp" },
+-- }
+
 lsp_configs["nil_ls"] = {
     settings = {
         ["nil"] = {
@@ -95,10 +134,12 @@ lsp_configs["nil_ls"] = {
         }
     }
 }
-
+lsp_configs["ruby_lsp"] = {}
 lsp_configs["denols"] = {}
+lsp_configs["qmlls"] = {}
 lsp_configs["tinymist"] = {}
 lsp_configs["wgsl_analyzer"] = {}
+
 
 for lsp, config in pairs(lsp_configs) do
     -- cursed table empty check
@@ -107,3 +148,5 @@ for lsp, config in pairs(lsp_configs) do
     end
     vim.lsp.enable(lsp)
 end
+
+return spec

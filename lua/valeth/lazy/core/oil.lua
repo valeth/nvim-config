@@ -41,7 +41,16 @@ local function insert_directory(direction)
     end
 end
 
-require("oil").setup({
+
+local spec = {
+    "stevearc/oil.nvim",
+}
+
+spec.dependencies = {
+    "nvim-lua/plenary.nvim"
+}
+
+spec.opts = {
     view_options = {
         show_hidden = true,
     },
@@ -54,6 +63,15 @@ require("oil").setup({
             insert_directory("above")
         end,
     }
-})
+}
 
-vim.keymap.set("n", "<Leader>ft", "<cmd>Oil<CR>", { desc = "Open oil file table" })
+-- Will not replace netrw if we lazy load sadly
+spec.lazy = false
+
+spec.cmd = { "Oil" }
+
+spec.keys = {
+    { "<Leader>ft", "<cmd>Oil<CR>", mode = "n", desc = "Open oil file table" }
+}
+
+return spec

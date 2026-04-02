@@ -1,0 +1,7 @@
+require("valeth.plugins.core.cmp")
+require("valeth.plugins.core.lsp")
+require("valeth.plugins.core.neogit")
+require("valeth.plugins.core.oil")
+require("valeth.plugins.core.resession")
+require("valeth.plugins.core.telescope")
+require("valeth.plugins.core.treesitter")

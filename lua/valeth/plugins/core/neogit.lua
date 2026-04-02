@@ -1,25 +1,14 @@
-local spec = {
-    "NeogitOrg/neogit",
-}
-
-spec.dependencies = {
-    "nvim-lua/plenary.nvim",
-}
-
-spec.keys = {
-    { "<Leader>vs",   "<cmd>Neogit<CR>",        desc = "Open NeoGit" },
-    { "<Leader>vc",   "<cmd>Neogit commit<CR>", desc = "Open NeoGit commit" },
-    { "<Leader>vpp",  "<cmd>Neogit push<CR>",   desc = "Open NeoGit push" },
-    { "<Leader>vpup", "<cmd>!git push<CR>",     desc = "Push local commits to upstream" },
-}
-
-spec.opts = {
+require("neogit").setup({
     -- handled by statuscol
     signs = {
         hunk = { "", "" },
         item = { "", "" },
         section = { "", "" },
     }
-}
+})
 
-return spec
+
+vim.keymap.set("n", "<Leader>vs", "<cmd>Neogit<CR>", { desc = "Open NeoGit" })
+vim.keymap.set("n", "<Leader>vc", "<cmd>Neogit commit<CR>", { desc = "Open NeoGit commit" })
+vim.keymap.set("n", "<Leader>vpp", "<cmd>Neogit push<CR>", { desc = "Open NeoGit push" })
+vim.keymap.set("n", "<Leader>vpup", "<cmd>!git push<CR>", { desc = "Push local commits to upstream" })

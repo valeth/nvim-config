@@ -1,4 +1,1 @@
-return {
-    "stevearc/dressing.nvim",
-    opts = {},
-}
+require("dressing").setup({})

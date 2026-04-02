@@ -64,7 +64,17 @@ local function save_session()
     end
 end
 
-vim.api.nvim_create_autocmd("VimLeavePre", { callback = save_session })
-vim.api.nvim_create_autocmd("VimEnter", { callback = load_session, })
+local spec = {
+    "stevearc/resession.nvim",
+}
 
-require("resession").setup({})
+spec.config = function()
+    local resession = require("resession")
+
+    vim.api.nvim_create_autocmd("VimEnter", { callback = load_session, })
+    vim.api.nvim_create_autocmd("VimLeavePre", { callback = save_session })
+
+    resession.setup({})
+end
+
+return spec

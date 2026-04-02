@@ -1,29 +1,14 @@
-local spec = {
-    "MeanderingProgrammer/render-markdown.nvim",
-}
+vim.api.nvim_set_hl(0, "RenderMarkdownHdNoBg", { bg = "NONE" })
 
-spec.dependencies = {
-    "nvim-treesitter/nvim-treesitter",
-    "echasnovski/mini.icons"
-}
+require("render-markdown").setup({
+    heading = {
+        -- Disable the background for heading lines
+        backgrounds = { "RenderMarkdownHdNoBg" },
+        position = "inline",
+    },
 
-spec.config = function()
-    local render_md = require("render-markdown")
-
-    vim.api.nvim_set_hl(0, "RenderMarkdownHdNoBg", { bg = "NONE" })
-
-    render_md.setup({
-        heading = {
-            -- Disable the background for heading lines
-            backgrounds = { "RenderMarkdownHdNoBg" },
-            position = "inline",
-        },
-
-        -- just extra clutter
-        sign = {
-            enabled = false
-        },
-    })
-end
-
-return spec
+    -- just extra clutter
+    sign = {
+        enabled = false
+    },
+})

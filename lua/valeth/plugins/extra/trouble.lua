@@ -1,19 +1,5 @@
-local spec = {
-    "folke/trouble.nvim",
-}
-
-spec.dependencies = {
-    "nvim-tree/nvim-web-devicons",
-}
-
-spec.opts = {
+require("trouble").setup({
     focus = true
-}
+})
 
-spec.cmd = "Trouble"
-
-spec.keys = {
-    { "<Leader>ct", "<cmd>Trouble diagnostics toggle<CR>", desc = "Toggle trouble window" },
-}
-
-return spec
+vim.keymap.set("n", "<Leader>ct", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Toggle trouble window" })

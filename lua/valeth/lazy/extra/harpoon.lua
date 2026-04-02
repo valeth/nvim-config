@@ -1,3 +1,13 @@
+local spec = {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+}
+
+spec.dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+}
+
 --- @param harpoon Harpoon
 local function toggle_telescope(harpoon)
     local file_paths = {}
@@ -52,34 +62,37 @@ local function toggle_telescope(harpoon)
     picker:find()
 end
 
+spec.config = function()
+    local harpoon = require("harpoon")
+    local keymap = vim.keymap.set
 
-local harpoon = require("harpoon")
+    harpoon:setup()
 
-harpoon:setup()
+    keymap("n", "<Leader>fh", function()
+        toggle_telescope(harpoon)
+    end, { desc = "Show list of harpoon marks" })
 
+    keymap("n", "<Leader>ha", function()
+        harpoon:list():add()
+    end, { desc = "Add current file to marks" })
 
-vim.keymap.set("n", "<Leader>fh", function()
-    toggle_telescope(harpoon)
-end, { desc = "Show list of harpoon marks" })
+    keymap("n", "<Leader>hr", function()
+        harpoon:list():remove()
+    end, { desc = "Remove current file from marks" })
 
-vim.keymap.set("n", "<Leader>ha", function()
-    harpoon:list():add()
-end, { desc = "Add current file to marks" })
+    keymap("n", "<Leader>hn", function()
+        harpoon:list():next()
+    end, { desc = "Go to next mark" })
 
-vim.keymap.set("n", "<Leader>hr", function()
-    harpoon:list():remove()
-end, { desc = "Remove current file from marks" })
+    keymap("n", "<Leader>hp", function()
+        harpoon:list():prev()
+    end, { desc = "Go to previous mark" })
 
-vim.keymap.set("n", "<Leader>hn", function()
-    harpoon:list():next()
-end, { desc = "Go to next mark" })
-
-vim.keymap.set("n", "<Leader>hp", function()
-    harpoon:list():prev()
-end, { desc = "Go to previous mark" })
-
-for i = 1, 5 do
-    vim.keymap.set("n", "<Leader>h" .. i, function()
-        harpoon:list():select(i)
-    end, { desc = "Go to marked file " .. i })
+    for i = 1, 5 do
+        keymap("n", "<Leader>h" .. i, function()
+            harpoon:list():select(i)
+        end, { desc = "Go to marked file " .. i })
+    end
 end
+
+return spec

@@ -1,11 +1,3 @@
-local spec = {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-        "nvim-tree/nvim-web-devicons",
-    }
-}
-
-
 local function macro_recording()
     local reg = vim.fn.reg_recording()
 
@@ -16,28 +8,22 @@ local function macro_recording()
     return "REC @ " .. reg
 end
 
-
-spec.config = function()
-    require("lualine").setup({
-        sections = {
-            lualine_a = {
-                macro_recording,
-                "mode",
-            },
-            lualine_b = {
-                {
-                    "diagnostics",
-                    symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" }
-                },
-            },
-            lualine_x = {
-                "lsp_status",
-                "encoding",
-                { "fileformat", icons_enabled = false },
-            }
+require("lualine").setup({
+    sections = {
+        lualine_a = {
+            macro_recording,
+            "mode",
         },
-    })
-end
-
-
-return spec
+        lualine_b = {
+            {
+                "diagnostics",
+                symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" }
+            },
+        },
+        lualine_x = {
+            "lsp_status",
+            "encoding",
+            { "fileformat", icons_enabled = false },
+        }
+    },
+})
