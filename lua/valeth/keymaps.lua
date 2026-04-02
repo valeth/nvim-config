@@ -35,6 +35,9 @@ local maps = {
     { "v",               "J",            ":move '>+1<CR>gv=gv", { desc = "Move selected lines down", silent = true } },
     { "v",               "K",            ":move '<-2<CR>gv=gv", { desc = "Move selected lines up", silent = true } },
 
+    { "v",               ">",            ">gv",                 { desc = "Indent and reselect line" } },
+    { "v",               "<",            "<gv",                 { desc = "Un-indent and reselect line" } },
+
     { "n",               "J",            "mzJ`z",               { desc = "Join lines without moving the cursor" } },
     { "n",               "<C-p>",        "mzyyp`zj",            { desc = "Duplicate current line" } },
     { "c",               "<C-A>",        "<Home>",              desc = "Go to start of line" },
