@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: missing-fields
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
         -- programming languages
@@ -69,4 +70,16 @@ require("nvim-treesitter.configs").setup({
             },
         },
     },
+})
+
+
+vim.api.nvim_create_autocmd("PackChanged", {
+    callback = function(event)
+        local name = event.data.spec.name
+        local kind = event.data.kind
+
+        if name == "nvim-treesitter" and (kind == "install" or kind == "update") then
+            vim.cmd("TSUpdate")
+        end
+    end
 })
