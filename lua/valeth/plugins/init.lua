@@ -1,7 +1,7 @@
 vim.pack.add({
     -- Core
-    "https://github.com/nvim-treesitter/nvim-treesitter",
-    "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+    "https://github.com/valeth/nvim-treesitter",
+    "https://github.com/valeth/nvim-treesitter-textobjects",
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/nvim-telescope/telescope.nvim",
     "https://github.com/hrsh7th/nvim-cmp",
