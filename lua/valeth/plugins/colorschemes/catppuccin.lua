@@ -1,12 +1,13 @@
 require("catppuccin").setup({
     custom_highlights = function(colors)
         return {
+            -- Remove background on folded line
             Folded = { bg = colors.none },
+            -- Remove blue background from fold ellipsis
             UfoFoldedEllipsis = { fg = colors.blue, bg = colors.none },
         }
     end,
     integrations = {
-        mason = true,
         noice = true,
         harpoon = true,
         lsp_trouble = true,
@@ -14,4 +15,5 @@ require("catppuccin").setup({
     }
 })
 
-vim.cmd.colorscheme("catppuccin")
+-- Neovim also has a simplified builtin catppuccin colorscheme
+vim.cmd.colorscheme("catppuccin-nvim")
