@@ -68,9 +68,7 @@ lsp_configs["rust_analyzer"] = {
 lsp_configs["lua_ls"] = {
     settings = {
         Lua = {
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("**/*.lua", true)
-            }
+            telemetry = { enable = false }
         }
     },
     capabilities = {
