@@ -16,3 +16,7 @@ ufo.setup({
         default = { "comment", "imports" },
     },
 })
+
+vim.keymap.set("n", "L", function()
+    require("ufo").peekFoldedLinesUnderCursor()
+end)
