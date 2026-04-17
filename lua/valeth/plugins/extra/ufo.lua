@@ -17,6 +17,6 @@ ufo.setup({
     },
 })
 
-vim.keymap.set("n", "L", function()
+vim.keymap.set("n", "<leader>z", function()
     require("ufo").peekFoldedLinesUnderCursor()
 end)
