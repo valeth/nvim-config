@@ -46,5 +46,5 @@ local maps = {
 }
 
 for _, m in pairs(maps) do
-    vim.keymap.set(m[1], m[2], m[3], m[4])
+    vim.keymap.set(unpack(m))
 end
