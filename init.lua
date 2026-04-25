@@ -2,6 +2,7 @@ require("valeth.options")
 require("valeth.keymaps")
 require("valeth.neovide")
 require("valeth.treesitter")
+require("valeth.lsp")
 
 if vim.version.ge(vim.version(), "0.12") then
     -- require("vim._core.ui2").enable({})

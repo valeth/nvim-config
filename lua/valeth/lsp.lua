@@ -28,10 +28,9 @@ end
 autocmd("LspAttach", {
     group = autogroup("LspAttachConfig", {}),
     callback = function(event)
-        local tsb = require("telescope.builtin")
         local buf = event.buf
-        bufmap(buf, "n", "gd", tsb.lsp_definitions, "Go to definition")
-        bufmap(buf, "n", "gr", tsb.lsp_references, "Go to reference")
+        bufmap(buf, "n", "gd", vim.lsp.buf.definition, "Go to definition")
+        bufmap(buf, "n", "gr", vim.lsp.buf.references, "Go to reference")
         bufmap(buf, "n", "K", vim.lsp.buf.hover, "Show documentation in hover")
         bufmap(buf, "n", "<Leader>ca", vim.lsp.buf.code_action, "Run a code action")
         bufmap(buf, "n", "<Leader>ci", vim.diagnostic.open_float, "Show diagnostics")
@@ -41,8 +40,12 @@ autocmd("LspAttach", {
     end
 })
 
-for entry in vim.fs.dir(vim.fs.joinpath(vim.fn.stdpath("config"), "lsp")) do
-    local filename = vim.fs.basename(entry)
-    local lsp = filename:match("^(.+)%..+")
-    vim.lsp.enable(lsp)
-end
+autocmd("BufEnter", {
+    callback = function()
+        for entry in vim.fs.dir(vim.fs.joinpath(vim.fn.stdpath("config"), "lsp")) do
+            local filename = vim.fs.basename(entry)
+            local lsp = filename:match("^(.+)%..+")
+            vim.lsp.enable(lsp)
+        end
+    end
+})
