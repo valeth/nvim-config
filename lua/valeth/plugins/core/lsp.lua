@@ -41,67 +41,8 @@ autocmd("LspAttach", {
     end
 })
 
-local lsp_configs = {}
-
-local ra_settings = {
-    cargo = {
-        features = "all"
-    },
-    checkOnSave = true,
-}
-
-if vim.fn.executable("cargo-clippy") == 1 then
-    ra_settings.check = { command = "clippy" }
-end
-
--- Don't have rustup available if using nix shell
-if vim.fn.executable("rustup") == 1 then
-    ra_settings.rustfmt = { extraArgs = { "+nightly" } }
-end
-
-lsp_configs["rust_analyzer"] = {
-    settings = {
-        ["rust-analyzer"] = ra_settings
-    }
-}
-
-lsp_configs["lua_ls"] = {
-    settings = {
-        Lua = {
-            telemetry = { enable = false }
-        }
-    },
-    capabilities = {
-        textDocument = {
-            completion = {
-                completionItem = {
-                    snippetSupport = false
-                }
-            }
-        }
-    }
-}
-
-lsp_configs["nil_ls"] = {
-    settings = {
-        ["nil"] = {
-            nix = {
-                flake = {
-                    autoArchive = true
-                }
-            }
-        }
-    }
-}
-
-lsp_configs["denols"] = {}
-lsp_configs["tinymist"] = {}
-lsp_configs["wgsl_analyzer"] = {}
-
-for lsp, config in pairs(lsp_configs) do
-    -- cursed table empty check
-    if next(config) ~= nil then
-        vim.lsp.config(lsp, config)
-    end
+for entry in vim.fs.dir(vim.fs.joinpath(vim.fn.stdpath("config"), "lsp")) do
+    local filename = vim.fs.basename(entry)
+    local lsp = filename:match("^(.+)%..+")
     vim.lsp.enable(lsp)
 end
