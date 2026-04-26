@@ -40,9 +40,12 @@ autocmd("LspAttach", {
     end
 })
 
-autocmd("BufEnter", {
+local fs = vim.fs
+local lsp_config_files = fs.dir(fs.joinpath(vim.fn.stdpath("config"), "lsp"))
+
+autocmd({"VimEnter", "BufNew"}, {
     callback = function()
-        for entry in vim.fs.dir(vim.fs.joinpath(vim.fn.stdpath("config"), "lsp")) do
+        for entry in lsp_config_files do
             local filename = vim.fs.basename(entry)
             local lsp = filename:match("^(.+)%..+")
             vim.lsp.enable(lsp)
