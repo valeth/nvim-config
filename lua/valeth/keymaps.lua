@@ -42,7 +42,7 @@ local maps = {
     { "n",               "<C-p>",        "mzyyp`zj",            { desc = "Duplicate current line" } },
     { "c",               "<C-A>",        "<Home>",              desc = "Go to start of line" },
     { "c",               "<C-E>",        "<End>",               desc = "Go to end of line" },
-
+    { "t",               "<Esc>",        "<C-\\><C-n>",         desc = "Exit terminal mode" },
 }
 
 for _, m in pairs(maps) do
